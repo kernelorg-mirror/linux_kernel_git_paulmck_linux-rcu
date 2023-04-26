@@ -183,6 +183,7 @@ struct rcu_data {
 	union rcu_noqs	cpu_no_qs;	/* No QSes yet for this CPU. */
 	bool		core_needs_qs;	/* Core waits for quiescent state. */
 	bool		beenonline;	/* CPU online at least once. */
+	bool		beenfullyonline; /* CPU fully online at least once. */
 	bool		gpwrap;		/* Possible ->gp_seq wrap. */
 	bool		cpu_started;	/* RCU watching this onlining CPU. */
 	struct rcu_node *mynode;	/* This CPU's leaf of hierarchy */
