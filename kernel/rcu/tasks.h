@@ -464,6 +464,8 @@ static void rcu_tasks_invoke_cbs(struct rcu_tasks *rtp, struct rcu_tasks_percpu 
 {
 	int cpu;
 	int cpunext;
+	int cpuwq1;
+	int cpuwq2;
 	unsigned long flags;
 	int len;
 	struct rcu_head *rhp;
@@ -474,11 +476,26 @@ static void rcu_tasks_invoke_cbs(struct rcu_tasks *rtp, struct rcu_tasks_percpu 
 	cpunext = cpu * 2 + 1;
 	if (cpunext < smp_load_acquire(&rtp->percpu_dequeue_lim)) {
 		rtpcp_next = per_cpu_ptr(rtp->rtpcpu, cpunext);
-		queue_work_on(cpunext, system_wq, &rtpcp_next->rtp_work);
+
+		// If a CPU has never been online, queue_work_on()
+		// objects to queueing work on that CPU.  Approximate a
+		// check for this by checking if the CPU is currently online.
+
+		cpus_read_lock();
+		cpuwq1 = cpu_online(cpunext) ? cpunext : WORK_CPU_UNBOUND;
+		cpuwq2 = cpu_online(cpunext + 1) ? cpunext + 1 : WORK_CPU_UNBOUND;
+		cpus_read_unlock();
+
+		// Yes, either CPU could go offline here.  But that is
+		// OK because queue_work_on() will (in effect) silently
+		// fall back to WORK_CPU_UNBOUND for any CPU that has ever
+		// been online.
+
+		queue_work_on(cpuwq1, system_wq, &rtpcp_next->rtp_work);
 		cpunext++;
 		if (cpunext < smp_load_acquire(&rtp->percpu_dequeue_lim)) {
 			rtpcp_next = per_cpu_ptr(rtp->rtpcpu, cpunext);
-			queue_work_on(cpunext, system_wq, &rtpcp_next->rtp_work);
+			queue_work_on(cpuwq2, system_wq, &rtpcp_next->rtp_work);
 		}
 	}
 
