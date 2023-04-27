@@ -4353,7 +4353,7 @@ bool rcu_cpu_beenfullyonline(int cpu)
 {
 	struct rcu_data *rdp = per_cpu_ptr(&rcu_data, cpu);
 
-	return smp_load_acquire(&rdp->beenfullyonline);
+	return smp_load_acquire(&rdp->beenonline);
 }
 
 /*
@@ -4375,7 +4375,6 @@ int rcutree_online_cpu(unsigned int cpu)
 		return 0; /* Too early in boot for scheduler work. */
 	sync_sched_exp_online_cleanup(cpu);
 	rcutree_affinity_setting(cpu, -1);
-	smp_store_release(&rdp->beenfullyonline, true);
 
 	// Stop-machine done, so allow nohz_full to disable tick.
 	tick_dep_clear(TICK_DEP_BIT_RCU);
@@ -4460,6 +4459,7 @@ void rcu_cpu_starting(unsigned int cpu)
 		raw_spin_unlock_rcu_node(rnp);
 	}
 	arch_spin_unlock(&rcu_state.ofl_lock);
+	smp_store_release(&rdp->beenonline, true);
 	smp_mb(); /* Ensure RCU read-side usage follows above initialization. */
 }
 
