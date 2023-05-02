@@ -191,6 +191,17 @@ static __always_inline int arch_atomic_fetch_sub(int i, atomic_t *v)
 }
 #define arch_atomic_fetch_sub arch_atomic_fetch_sub
 
+/**
+ * arch_atomic_cmpxchg - atomic compare-and-exchange values
+ * @v: pointer to value to change
+ * @old:  desired old value to match
+ * @new:  new value to put in
+ *
+ * Atomically compares @new to *@v, and if equal, stores @new to *@v.
+ * Returns the old value *@v regardless of the result of the comparison.
+ * Therefore, if the return value is not equal to @old, the
+ * arch_atomic_cmpxchg() failed.
+ */
 static __always_inline int arch_atomic_cmpxchg(atomic_t *v, int old, int new)
 {
 	return arch_cmpxchg(&v->counter, old, new);
