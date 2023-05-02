@@ -1492,6 +1492,14 @@ arch_atomic_inc_not_zero(atomic_t *v)
 #endif
 
 #ifndef arch_atomic_inc_unless_negative
+/**
+ * arch_atomic_inc_unless_negative - Atomic increment if old value is non-negative
+ * @v: pointer of type atomic_t
+ *
+ * Atomically increment @v, but only if the original value is greater
+ * than or equal to zero.  Return @true if the increment happened and
+ * @false otherwise.
+ */
 static __always_inline bool
 arch_atomic_inc_unless_negative(atomic_t *v)
 {
@@ -2837,6 +2845,14 @@ arch_atomic64_inc_not_zero(atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_inc_unless_negative
+/**
+ * arch_atomic64_inc_unless_negative - Atomic increment if old value is non-negative
+ * @v: pointer of type atomic64_t
+ *
+ * Atomically increment @v, but only if the original value is greater
+ * than or equal to zero.  Return @true if the increment happened and
+ * @false otherwise.
+ */
 static __always_inline bool
 arch_atomic64_inc_unless_negative(atomic64_t *v)
 {
@@ -2904,4 +2920,4 @@ arch_atomic64_dec_if_positive(atomic64_t *v)
 #endif
 
 #endif /* _LINUX_ATOMIC_FALLBACK_H */
-// 0f2e3183fbc24937289f7c56394eba3f93ade306
+// 280ba77f503fafb6ce15bea7df60ac4ecd1a8391
