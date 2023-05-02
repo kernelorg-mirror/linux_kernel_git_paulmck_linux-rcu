@@ -289,6 +289,14 @@ arch_atomic_add_return_acquire(int i, atomic_t *v)
 #endif
 
 #ifndef arch_atomic_add_return_release
+/**
+ * arch_atomic_add_return_release - Atomic add with release ordering
+ * @i: value to add
+ * @v: pointer of type atomic
+ *
+ * Atomically add @i to @v using release ordering.
+ * Return new value.
+ */
 static __always_inline int
 arch_atomic_add_return_release(int i, atomic_t *v)
 {
@@ -339,6 +347,14 @@ arch_atomic_fetch_add_acquire(int i, atomic_t *v)
 #endif
 
 #ifndef arch_atomic_fetch_add_release
+/**
+ * arch_atomic_fetch_add_release - Atomic add with release ordering
+ * @i: value to add
+ * @v: pointer of type atomic
+ *
+ * Atomically add @i to @v using release ordering.
+ * Return old value.
+ */
 static __always_inline int
 arch_atomic_fetch_add_release(int i, atomic_t *v)
 {
@@ -389,6 +405,14 @@ arch_atomic_sub_return_acquire(int i, atomic_t *v)
 #endif
 
 #ifndef arch_atomic_sub_return_release
+/**
+ * arch_atomic_sub_return_release - Atomic sub with release ordering
+ * @i: value to sub
+ * @v: pointer of type atomic
+ *
+ * Atomically sub @i from @v using release ordering.
+ * Return new value.
+ */
 static __always_inline int
 arch_atomic_sub_return_release(int i, atomic_t *v)
 {
@@ -439,6 +463,14 @@ arch_atomic_fetch_sub_acquire(int i, atomic_t *v)
 #endif
 
 #ifndef arch_atomic_fetch_sub_release
+/**
+ * arch_atomic_fetch_sub_release - Atomic sub with release ordering
+ * @i: value to sub
+ * @v: pointer of type atomic
+ *
+ * Atomically sub @i from @v using release ordering.
+ * Return old value.
+ */
 static __always_inline int
 arch_atomic_fetch_sub_release(int i, atomic_t *v)
 {
@@ -571,6 +603,13 @@ arch_atomic_inc_return_acquire(atomic_t *v)
 #endif
 
 #ifndef arch_atomic_inc_return_release
+/**
+ * arch_atomic_inc_return_release - Atomic inc with release ordering
+ * @v: pointer of type atomic
+ *
+ * Atomically inc @v using release ordering.
+ * Return new value.
+ */
 static __always_inline int
 arch_atomic_inc_return_release(atomic_t *v)
 {
@@ -687,6 +726,13 @@ arch_atomic_fetch_inc_acquire(atomic_t *v)
 #endif
 
 #ifndef arch_atomic_fetch_inc_release
+/**
+ * arch_atomic_fetch_inc_release - Atomic inc with release ordering
+ * @v: pointer of type atomic
+ *
+ * Atomically inc @v using release ordering.
+ * Return old value.
+ */
 static __always_inline int
 arch_atomic_fetch_inc_release(atomic_t *v)
 {
@@ -819,6 +865,13 @@ arch_atomic_dec_return_acquire(atomic_t *v)
 #endif
 
 #ifndef arch_atomic_dec_return_release
+/**
+ * arch_atomic_dec_return_release - Atomic dec with release ordering
+ * @v: pointer of type atomic
+ *
+ * Atomically dec @v using release ordering.
+ * Return new value.
+ */
 static __always_inline int
 arch_atomic_dec_return_release(atomic_t *v)
 {
@@ -935,6 +988,13 @@ arch_atomic_fetch_dec_acquire(atomic_t *v)
 #endif
 
 #ifndef arch_atomic_fetch_dec_release
+/**
+ * arch_atomic_fetch_dec_release - Atomic dec with release ordering
+ * @v: pointer of type atomic
+ *
+ * Atomically dec @v using release ordering.
+ * Return old value.
+ */
 static __always_inline int
 arch_atomic_fetch_dec_release(atomic_t *v)
 {
@@ -985,6 +1045,14 @@ arch_atomic_fetch_and_acquire(int i, atomic_t *v)
 #endif
 
 #ifndef arch_atomic_fetch_and_release
+/**
+ * arch_atomic_fetch_and_release - Atomic and with release ordering
+ * @i: value to and
+ * @v: pointer of type atomic
+ *
+ * Atomically and @i with @v using release ordering.
+ * Return old value.
+ */
 static __always_inline int
 arch_atomic_fetch_and_release(int i, atomic_t *v)
 {
@@ -1123,6 +1191,14 @@ arch_atomic_fetch_andnot_acquire(int i, atomic_t *v)
 #endif
 
 #ifndef arch_atomic_fetch_andnot_release
+/**
+ * arch_atomic_fetch_andnot_release - Atomic andnot with release ordering
+ * @i: value to andnot
+ * @v: pointer of type atomic
+ *
+ * Atomically andnot @i with @v using release ordering.
+ * Return old value.
+ */
 static __always_inline int
 arch_atomic_fetch_andnot_release(int i, atomic_t *v)
 {
@@ -1173,6 +1249,14 @@ arch_atomic_fetch_or_acquire(int i, atomic_t *v)
 #endif
 
 #ifndef arch_atomic_fetch_or_release
+/**
+ * arch_atomic_fetch_or_release - Atomic or with release ordering
+ * @i: value to or
+ * @v: pointer of type atomic
+ *
+ * Atomically or @i with @v using release ordering.
+ * Return old value.
+ */
 static __always_inline int
 arch_atomic_fetch_or_release(int i, atomic_t *v)
 {
@@ -1223,6 +1307,14 @@ arch_atomic_fetch_xor_acquire(int i, atomic_t *v)
 #endif
 
 #ifndef arch_atomic_fetch_xor_release
+/**
+ * arch_atomic_fetch_xor_release - Atomic xor with release ordering
+ * @i: value to xor
+ * @v: pointer of type atomic
+ *
+ * Atomically xor @i with @v using release ordering.
+ * Return old value.
+ */
 static __always_inline int
 arch_atomic_fetch_xor_release(int i, atomic_t *v)
 {
@@ -1273,6 +1365,14 @@ arch_atomic_xchg_acquire(atomic_t *v, int i)
 #endif
 
 #ifndef arch_atomic_xchg_release
+/**
+ * arch_atomic_xchg_release - Atomic xchg with release ordering
+ * @v: pointer of type atomic
+ * @i: value to xchg
+ *
+ * Atomically xchg @i with @v using release ordering.
+ * Return old value.
+ */
 static __always_inline int
 arch_atomic_xchg_release(atomic_t *v, int i)
 {
@@ -1327,6 +1427,18 @@ arch_atomic_cmpxchg_acquire(atomic_t *v, int old, int new)
 #endif
 
 #ifndef arch_atomic_cmpxchg_release
+/**
+ * arch_atomic_cmpxchg_release - Atomic cmpxchg with release ordering
+ * @v: pointer of type atomic
+ * @old: desired old value to match
+ * @new: new value to put in
+ *
+ * Atomically compares @new to *@v, and if equal,
+ * stores @new to *@v, providing release ordering.
+ * Returns the old value *@v regardless of the result of
+ * the comparison.  Therefore, if the return value is not
+ * equal to @old, the cmpxchg operation failed.
+ */
 static __always_inline int
 arch_atomic_cmpxchg_release(atomic_t *v, int old, int new)
 {
@@ -1475,6 +1587,17 @@ arch_atomic_try_cmpxchg_acquire(atomic_t *v, int *old, int new)
 #endif
 
 #ifndef arch_atomic_try_cmpxchg_release
+/**
+ * arch_atomic_try_cmpxchg_release - Atomic try_cmpxchg with release ordering
+ * @v: pointer of type atomic
+ * @old: desired old value to match
+ * @new: new value to put in
+ *
+ * Atomically compares @new to *@v, and if equal,
+ * stores @new to *@v, providing release ordering.
+ * Returns @true if the cmpxchg operation succeeded,
+ * and false otherwise.
+ */
 static __always_inline bool
 arch_atomic_try_cmpxchg_release(atomic_t *v, int *old, int new)
 {
@@ -1779,6 +1902,14 @@ arch_atomic64_add_return_acquire(s64 i, atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_add_return_release
+/**
+ * arch_atomic64_add_return_release - Atomic add with release ordering
+ * @i: value to add
+ * @v: pointer of type atomic64
+ *
+ * Atomically add @i to @v using release ordering.
+ * Return new value.
+ */
 static __always_inline s64
 arch_atomic64_add_return_release(s64 i, atomic64_t *v)
 {
@@ -1829,6 +1960,14 @@ arch_atomic64_fetch_add_acquire(s64 i, atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_fetch_add_release
+/**
+ * arch_atomic64_fetch_add_release - Atomic add with release ordering
+ * @i: value to add
+ * @v: pointer of type atomic64
+ *
+ * Atomically add @i to @v using release ordering.
+ * Return old value.
+ */
 static __always_inline s64
 arch_atomic64_fetch_add_release(s64 i, atomic64_t *v)
 {
@@ -1879,6 +2018,14 @@ arch_atomic64_sub_return_acquire(s64 i, atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_sub_return_release
+/**
+ * arch_atomic64_sub_return_release - Atomic sub with release ordering
+ * @i: value to sub
+ * @v: pointer of type atomic64
+ *
+ * Atomically sub @i from @v using release ordering.
+ * Return new value.
+ */
 static __always_inline s64
 arch_atomic64_sub_return_release(s64 i, atomic64_t *v)
 {
@@ -1929,6 +2076,14 @@ arch_atomic64_fetch_sub_acquire(s64 i, atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_fetch_sub_release
+/**
+ * arch_atomic64_fetch_sub_release - Atomic sub with release ordering
+ * @i: value to sub
+ * @v: pointer of type atomic64
+ *
+ * Atomically sub @i from @v using release ordering.
+ * Return old value.
+ */
 static __always_inline s64
 arch_atomic64_fetch_sub_release(s64 i, atomic64_t *v)
 {
@@ -2061,6 +2216,13 @@ arch_atomic64_inc_return_acquire(atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_inc_return_release
+/**
+ * arch_atomic64_inc_return_release - Atomic inc with release ordering
+ * @v: pointer of type atomic64
+ *
+ * Atomically inc @v using release ordering.
+ * Return new value.
+ */
 static __always_inline s64
 arch_atomic64_inc_return_release(atomic64_t *v)
 {
@@ -2177,6 +2339,13 @@ arch_atomic64_fetch_inc_acquire(atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_fetch_inc_release
+/**
+ * arch_atomic64_fetch_inc_release - Atomic inc with release ordering
+ * @v: pointer of type atomic64
+ *
+ * Atomically inc @v using release ordering.
+ * Return old value.
+ */
 static __always_inline s64
 arch_atomic64_fetch_inc_release(atomic64_t *v)
 {
@@ -2309,6 +2478,13 @@ arch_atomic64_dec_return_acquire(atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_dec_return_release
+/**
+ * arch_atomic64_dec_return_release - Atomic dec with release ordering
+ * @v: pointer of type atomic64
+ *
+ * Atomically dec @v using release ordering.
+ * Return new value.
+ */
 static __always_inline s64
 arch_atomic64_dec_return_release(atomic64_t *v)
 {
@@ -2425,6 +2601,13 @@ arch_atomic64_fetch_dec_acquire(atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_fetch_dec_release
+/**
+ * arch_atomic64_fetch_dec_release - Atomic dec with release ordering
+ * @v: pointer of type atomic64
+ *
+ * Atomically dec @v using release ordering.
+ * Return old value.
+ */
 static __always_inline s64
 arch_atomic64_fetch_dec_release(atomic64_t *v)
 {
@@ -2475,6 +2658,14 @@ arch_atomic64_fetch_and_acquire(s64 i, atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_fetch_and_release
+/**
+ * arch_atomic64_fetch_and_release - Atomic and with release ordering
+ * @i: value to and
+ * @v: pointer of type atomic64
+ *
+ * Atomically and @i with @v using release ordering.
+ * Return old value.
+ */
 static __always_inline s64
 arch_atomic64_fetch_and_release(s64 i, atomic64_t *v)
 {
@@ -2613,6 +2804,14 @@ arch_atomic64_fetch_andnot_acquire(s64 i, atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_fetch_andnot_release
+/**
+ * arch_atomic64_fetch_andnot_release - Atomic andnot with release ordering
+ * @i: value to andnot
+ * @v: pointer of type atomic64
+ *
+ * Atomically andnot @i with @v using release ordering.
+ * Return old value.
+ */
 static __always_inline s64
 arch_atomic64_fetch_andnot_release(s64 i, atomic64_t *v)
 {
@@ -2663,6 +2862,14 @@ arch_atomic64_fetch_or_acquire(s64 i, atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_fetch_or_release
+/**
+ * arch_atomic64_fetch_or_release - Atomic or with release ordering
+ * @i: value to or
+ * @v: pointer of type atomic64
+ *
+ * Atomically or @i with @v using release ordering.
+ * Return old value.
+ */
 static __always_inline s64
 arch_atomic64_fetch_or_release(s64 i, atomic64_t *v)
 {
@@ -2713,6 +2920,14 @@ arch_atomic64_fetch_xor_acquire(s64 i, atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_fetch_xor_release
+/**
+ * arch_atomic64_fetch_xor_release - Atomic xor with release ordering
+ * @i: value to xor
+ * @v: pointer of type atomic64
+ *
+ * Atomically xor @i with @v using release ordering.
+ * Return old value.
+ */
 static __always_inline s64
 arch_atomic64_fetch_xor_release(s64 i, atomic64_t *v)
 {
@@ -2763,6 +2978,14 @@ arch_atomic64_xchg_acquire(atomic64_t *v, s64 i)
 #endif
 
 #ifndef arch_atomic64_xchg_release
+/**
+ * arch_atomic64_xchg_release - Atomic xchg with release ordering
+ * @v: pointer of type atomic64
+ * @i: value to xchg
+ *
+ * Atomically xchg @i with @v using release ordering.
+ * Return old value.
+ */
 static __always_inline s64
 arch_atomic64_xchg_release(atomic64_t *v, s64 i)
 {
@@ -2817,6 +3040,18 @@ arch_atomic64_cmpxchg_acquire(atomic64_t *v, s64 old, s64 new)
 #endif
 
 #ifndef arch_atomic64_cmpxchg_release
+/**
+ * arch_atomic64_cmpxchg_release - Atomic cmpxchg with release ordering
+ * @v: pointer of type atomic64
+ * @old: desired old value to match
+ * @new: new value to put in
+ *
+ * Atomically compares @new to *@v, and if equal,
+ * stores @new to *@v, providing release ordering.
+ * Returns the old value *@v regardless of the result of
+ * the comparison.  Therefore, if the return value is not
+ * equal to @old, the cmpxchg operation failed.
+ */
 static __always_inline s64
 arch_atomic64_cmpxchg_release(atomic64_t *v, s64 old, s64 new)
 {
@@ -2965,6 +3200,17 @@ arch_atomic64_try_cmpxchg_acquire(atomic64_t *v, s64 *old, s64 new)
 #endif
 
 #ifndef arch_atomic64_try_cmpxchg_release
+/**
+ * arch_atomic64_try_cmpxchg_release - Atomic try_cmpxchg with release ordering
+ * @v: pointer of type atomic64
+ * @old: desired old value to match
+ * @new: new value to put in
+ *
+ * Atomically compares @new to *@v, and if equal,
+ * stores @new to *@v, providing release ordering.
+ * Returns @true if the cmpxchg operation succeeded,
+ * and false otherwise.
+ */
 static __always_inline bool
 arch_atomic64_try_cmpxchg_release(atomic64_t *v, s64 *old, s64 new)
 {
@@ -3194,4 +3440,4 @@ arch_atomic64_dec_if_positive(atomic64_t *v)
 #endif
 
 #endif /* _LINUX_ATOMIC_FALLBACK_H */
-// bc9d4a8b23f35f473aa8023dbfe2037753ea3fd3
+// 8fb5414782e047a8d7d77009d54c9facbb1eada8
