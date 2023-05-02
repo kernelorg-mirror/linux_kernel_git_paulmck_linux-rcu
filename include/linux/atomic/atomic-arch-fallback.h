@@ -240,6 +240,13 @@
 #endif /* arch_try_cmpxchg64_local */
 
 #ifndef arch_atomic_read_acquire
+/**
+ * arch_atomic_read_acquire - Atomic load acquire
+ * @v: pointer of type atomic_t
+ *
+ * Atomically load from *@v with acquire ordering, returning the value
+ * loaded.
+ */
 static __always_inline int
 arch_atomic_read_acquire(const atomic_t *v)
 {
@@ -1695,6 +1702,13 @@ arch_atomic_dec_if_positive(atomic_t *v)
 #endif
 
 #ifndef arch_atomic64_read_acquire
+/**
+ * arch_atomic64_read_acquire - Atomic load acquire
+ * @v: pointer of type atomic64_t
+ *
+ * Atomically load from *@v with acquire ordering, returning the value
+ * loaded.
+ */
 static __always_inline s64
 arch_atomic64_read_acquire(const atomic64_t *v)
 {
@@ -3146,4 +3160,4 @@ arch_atomic64_dec_if_positive(atomic64_t *v)
 #endif
 
 #endif /* _LINUX_ATOMIC_FALLBACK_H */
-// 35a308ef29c03cf5b5cf5bafa8863aedae2dd3d4
+// 9ff3184c80c9847e1db3663fd6c5a1bc5c7b0687
