@@ -203,6 +203,14 @@ static __always_inline bool arch_atomic_try_cmpxchg(atomic_t *v, int *old, int n
 }
 #define arch_atomic_try_cmpxchg arch_atomic_try_cmpxchg
 
+/**
+ * arch_atomic_xchg - atomically exchange a value into memory
+ * @v: pointer to memory to change
+ * @new: new value
+ *
+ * Atomically stores @new into @v.
+ * Returns the value that was overwritten by this atomic store.
+ */
 static __always_inline int arch_atomic_xchg(atomic_t *v, int new)
 {
 	return arch_xchg(&v->counter, new);
