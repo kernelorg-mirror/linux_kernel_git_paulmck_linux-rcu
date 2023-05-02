@@ -329,7 +329,6 @@ arch_atomic_add_return_release(int i, atomic_t *v)
 #endif
 
 #ifndef arch_atomic_add_return
-// @@@
 /**
  * arch_atomic_add_return - Atomic add with full ordering
  * @i: value to add
@@ -396,7 +395,6 @@ arch_atomic_fetch_add_release(int i, atomic_t *v)
 #endif
 
 #ifndef arch_atomic_fetch_add
-// @@@
 /**
  * arch_atomic_fetch_add - Atomic add with full ordering
  * @i: value to add
@@ -463,7 +461,6 @@ arch_atomic_sub_return_release(int i, atomic_t *v)
 #endif
 
 #ifndef arch_atomic_sub_return
-// @@@
 /**
  * arch_atomic_sub_return - Atomic sub with full ordering
  * @i: value to subtract
@@ -530,7 +527,6 @@ arch_atomic_fetch_sub_release(int i, atomic_t *v)
 #endif
 
 #ifndef arch_atomic_fetch_sub
-// @@@
 /**
  * arch_atomic_fetch_sub - Atomic sub with full ordering
  * @i: value to subtract
@@ -678,7 +674,6 @@ arch_atomic_inc_return_release(atomic_t *v)
 #endif
 
 #ifndef arch_atomic_inc_return
-// @@@
 /**
  * arch_atomic_inc_return - Atomic inc with full ordering
  * @v: pointer of type atomic_t
@@ -809,7 +804,6 @@ arch_atomic_fetch_inc_release(atomic_t *v)
 #endif
 
 #ifndef arch_atomic_fetch_inc
-// @@@
 /**
  * arch_atomic_fetch_inc - Atomic inc with full ordering
  * @v: pointer of type atomic_t
@@ -956,7 +950,6 @@ arch_atomic_dec_return_release(atomic_t *v)
 #endif
 
 #ifndef arch_atomic_dec_return
-// @@@
 /**
  * arch_atomic_dec_return - Atomic dec with full ordering
  * @v: pointer of type atomic_t
@@ -1087,7 +1080,6 @@ arch_atomic_fetch_dec_release(atomic_t *v)
 #endif
 
 #ifndef arch_atomic_fetch_dec
-// @@@
 /**
  * arch_atomic_fetch_dec - Atomic dec with full ordering
  * @v: pointer of type atomic_t
@@ -1153,7 +1145,6 @@ arch_atomic_fetch_and_release(int i, atomic_t *v)
 #endif
 
 #ifndef arch_atomic_fetch_and
-// @@@
 /**
  * arch_atomic_fetch_and - Atomic and with full ordering
  * @i: value to AND
@@ -1308,7 +1299,6 @@ arch_atomic_fetch_andnot_release(int i, atomic_t *v)
 #endif
 
 #ifndef arch_atomic_fetch_andnot
-// @@@
 /**
  * arch_atomic_fetch_andnot - Atomic andnot with full ordering
  * @i: value to complement then AND
@@ -1375,7 +1365,6 @@ arch_atomic_fetch_or_release(int i, atomic_t *v)
 #endif
 
 #ifndef arch_atomic_fetch_or
-// @@@
 /**
  * arch_atomic_fetch_or - Atomic or with full ordering
  * @i: value to OR
@@ -1442,7 +1431,6 @@ arch_atomic_fetch_xor_release(int i, atomic_t *v)
 #endif
 
 #ifndef arch_atomic_fetch_xor
-// @@@
 /**
  * arch_atomic_fetch_xor - Atomic xor with full ordering
  * @i: value to XOR
@@ -1509,7 +1497,6 @@ arch_atomic_xchg_release(atomic_t *v, int i)
 #endif
 
 #ifndef arch_atomic_xchg
-// @@@
 /**
  * arch_atomic_xchg - Atomic xchg with full ordering
  * @v: pointer of type atomic_t
@@ -1584,7 +1571,6 @@ arch_atomic_cmpxchg_release(atomic_t *v, int old, int new)
 #endif
 
 #ifndef arch_atomic_cmpxchg
-// @@@
 /**
  * arch_atomic_cmpxchg - Atomic cmpxchg with full ordering
  * @v: pointer of type atomic_t
@@ -1758,7 +1744,6 @@ arch_atomic_try_cmpxchg_release(atomic_t *v, int *old, int new)
 #endif
 
 #ifndef arch_atomic_try_cmpxchg
-// @@@
 /**
  * arch_atomic_try_cmpxchg - Atomic try_cmpxchg with full ordering
  * @v: pointer of type atomic_t
@@ -1954,7 +1939,6 @@ arch_atomic_add_negative_release(int i, atomic_t *v)
 #endif
 
 #ifndef arch_atomic_add_negative
-// @@@
 /**
  * arch_atomic_add_negative - Atomic add_negative with full ordering
  * @i: value to add
@@ -2206,7 +2190,6 @@ arch_atomic64_add_return_release(s64 i, atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_add_return
-// @@@
 /**
  * arch_atomic64_add_return - Atomic add with full ordering
  * @i: value to add
@@ -2273,7 +2256,6 @@ arch_atomic64_fetch_add_release(s64 i, atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_fetch_add
-// @@@
 /**
  * arch_atomic64_fetch_add - Atomic add with full ordering
  * @i: value to add
@@ -2340,7 +2322,6 @@ arch_atomic64_sub_return_release(s64 i, atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_sub_return
-// @@@
 /**
  * arch_atomic64_sub_return - Atomic sub with full ordering
  * @i: value to subtract
@@ -2407,7 +2388,6 @@ arch_atomic64_fetch_sub_release(s64 i, atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_fetch_sub
-// @@@
 /**
  * arch_atomic64_fetch_sub - Atomic sub with full ordering
  * @i: value to subtract
@@ -2555,7 +2535,6 @@ arch_atomic64_inc_return_release(atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_inc_return
-// @@@
 /**
  * arch_atomic64_inc_return - Atomic inc with full ordering
  * @v: pointer of type atomic64_t
@@ -2686,7 +2665,6 @@ arch_atomic64_fetch_inc_release(atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_fetch_inc
-// @@@
 /**
  * arch_atomic64_fetch_inc - Atomic inc with full ordering
  * @v: pointer of type atomic64_t
@@ -2833,7 +2811,6 @@ arch_atomic64_dec_return_release(atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_dec_return
-// @@@
 /**
  * arch_atomic64_dec_return - Atomic dec with full ordering
  * @v: pointer of type atomic64_t
@@ -2964,7 +2941,6 @@ arch_atomic64_fetch_dec_release(atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_fetch_dec
-// @@@
 /**
  * arch_atomic64_fetch_dec - Atomic dec with full ordering
  * @v: pointer of type atomic64_t
@@ -3030,7 +3006,6 @@ arch_atomic64_fetch_and_release(s64 i, atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_fetch_and
-// @@@
 /**
  * arch_atomic64_fetch_and - Atomic and with full ordering
  * @i: value to AND
@@ -3185,7 +3160,6 @@ arch_atomic64_fetch_andnot_release(s64 i, atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_fetch_andnot
-// @@@
 /**
  * arch_atomic64_fetch_andnot - Atomic andnot with full ordering
  * @i: value to complement then AND
@@ -3252,7 +3226,6 @@ arch_atomic64_fetch_or_release(s64 i, atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_fetch_or
-// @@@
 /**
  * arch_atomic64_fetch_or - Atomic or with full ordering
  * @i: value to OR
@@ -3319,7 +3292,6 @@ arch_atomic64_fetch_xor_release(s64 i, atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_fetch_xor
-// @@@
 /**
  * arch_atomic64_fetch_xor - Atomic xor with full ordering
  * @i: value to XOR
@@ -3386,7 +3358,6 @@ arch_atomic64_xchg_release(atomic64_t *v, s64 i)
 #endif
 
 #ifndef arch_atomic64_xchg
-// @@@
 /**
  * arch_atomic64_xchg - Atomic xchg with full ordering
  * @v: pointer of type atomic64_t
@@ -3461,7 +3432,6 @@ arch_atomic64_cmpxchg_release(atomic64_t *v, s64 old, s64 new)
 #endif
 
 #ifndef arch_atomic64_cmpxchg
-// @@@
 /**
  * arch_atomic64_cmpxchg - Atomic cmpxchg with full ordering
  * @v: pointer of type atomic64_t
@@ -3635,7 +3605,6 @@ arch_atomic64_try_cmpxchg_release(atomic64_t *v, s64 *old, s64 new)
 #endif
 
 #ifndef arch_atomic64_try_cmpxchg
-// @@@
 /**
  * arch_atomic64_try_cmpxchg - Atomic try_cmpxchg with full ordering
  * @v: pointer of type atomic64_t
@@ -3831,7 +3800,6 @@ arch_atomic64_add_negative_release(s64 i, atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_add_negative
-// @@@
 /**
  * arch_atomic64_add_negative - Atomic add_negative with full ordering
  * @i: value to add
@@ -3990,4 +3958,4 @@ arch_atomic64_dec_if_positive(atomic64_t *v)
 #endif
 
 #endif /* _LINUX_ATOMIC_FALLBACK_H */
-// f47f43bd93ef04f669d345c3d87f577b16adb281
+// 4193f6dbab26ac41f38dbb9397711e254f60f551
