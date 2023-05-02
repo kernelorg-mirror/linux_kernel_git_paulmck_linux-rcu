@@ -1234,7 +1234,7 @@ arch_atomic_add_negative(int i, atomic_t *v)
  * @u: ...unless v is equal to u.
  *
  * Atomically adds @a to @v, so long as @v was not already @u.
- * Returns original value of @v
+ * Returns original value of @v.
  */
 static __always_inline int
 arch_atomic_fetch_add_unless(atomic_t *v, int a, int u)
@@ -2355,7 +2355,7 @@ arch_atomic64_add_negative(s64 i, atomic64_t *v)
  * @u: ...unless v is equal to u.
  *
  * Atomically adds @a to @v, so long as @v was not already @u.
- * Returns original value of @v
+ * Returns original value of @v.
  */
 static __always_inline s64
 arch_atomic64_fetch_add_unless(atomic64_t *v, s64 a, s64 u)
@@ -2456,4 +2456,4 @@ arch_atomic64_dec_if_positive(atomic64_t *v)
 #endif
 
 #endif /* _LINUX_ATOMIC_FALLBACK_H */
-// b5e87bdd5ede61470c29f7a7e4de781af3770f09
+// d7c221db11c0e7af279922d66f4fbcd5ee5026eb
