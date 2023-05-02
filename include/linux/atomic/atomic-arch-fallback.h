@@ -1255,6 +1255,16 @@ arch_atomic_cmpxchg(atomic_t *v, int old, int new)
 #endif /* arch_atomic_try_cmpxchg */
 
 #ifndef arch_atomic_try_cmpxchg
+/**
+ * arch_atomic_try_cmpxchg - Atomic cmpxchg with bool return value
+ * @v:  pointer of type atomic_t
+ * @old:  desired old value to match
+ * @new:  new value to put in
+ *
+ * Atomically compares @new to *@v, and if equal, stores @new to *@v,
+ * providing full ordering.
+ * Returns @true if the cmpxchg operation succeeded, and false otherwise.
+ */
 static __always_inline bool
 arch_atomic_try_cmpxchg(atomic_t *v, int *old, int new)
 {
@@ -1268,6 +1278,16 @@ arch_atomic_try_cmpxchg(atomic_t *v, int *old, int new)
 #endif
 
 #ifndef arch_atomic_try_cmpxchg_acquire
+/**
+ * arch_atomic_try_cmpxchg_acquire - Atomic cmpxchg with bool return value
+ * @v:  pointer of type atomic_t
+ * @old:  desired old value to match
+ * @new:  new value to put in
+ *
+ * Atomically compares @new to *@v, and if equal, stores @new to *@v,
+ * providing acquire ordering.
+ * Returns @true if the cmpxchg operation succeeded, and false otherwise.
+ */
 static __always_inline bool
 arch_atomic_try_cmpxchg_acquire(atomic_t *v, int *old, int new)
 {
@@ -1281,6 +1301,16 @@ arch_atomic_try_cmpxchg_acquire(atomic_t *v, int *old, int new)
 #endif
 
 #ifndef arch_atomic_try_cmpxchg_release
+/**
+ * arch_atomic_try_cmpxchg_release - Atomic cmpxchg with bool return value
+ * @v:  pointer of type atomic_t
+ * @old:  desired old value to match
+ * @new:  new value to put in
+ *
+ * Atomically compares @new to *@v, and if equal, stores @new to *@v,
+ * providing release ordering.
+ * Returns @true if the cmpxchg operation succeeded, and false otherwise.
+ */
 static __always_inline bool
 arch_atomic_try_cmpxchg_release(atomic_t *v, int *old, int new)
 {
@@ -1294,6 +1324,16 @@ arch_atomic_try_cmpxchg_release(atomic_t *v, int *old, int new)
 #endif
 
 #ifndef arch_atomic_try_cmpxchg_relaxed
+/**
+ * arch_atomic_try_cmpxchg_relaxed - Atomic cmpxchg with bool return value
+ * @v:  pointer of type atomic_t
+ * @old:  desired old value to match
+ * @new:  new value to put in
+ *
+ * Atomically compares @new to *@v, and if equal, stores @new to *@v,
+ * providing no ordering.
+ * Returns @true if the cmpxchg operation succeeded, and false otherwise.
+ */
 static __always_inline bool
 arch_atomic_try_cmpxchg_relaxed(atomic_t *v, int *old, int new)
 {
@@ -2637,6 +2677,16 @@ arch_atomic64_cmpxchg(atomic64_t *v, s64 old, s64 new)
 #endif /* arch_atomic64_try_cmpxchg */
 
 #ifndef arch_atomic64_try_cmpxchg
+/**
+ * arch_atomic64_try_cmpxchg - Atomic cmpxchg with bool return value
+ * @v:  pointer of type atomic64_t
+ * @old:  desired old value to match
+ * @new:  new value to put in
+ *
+ * Atomically compares @new to *@v, and if equal, stores @new to *@v,
+ * providing full ordering.
+ * Returns @true if the cmpxchg operation succeeded, and false otherwise.
+ */
 static __always_inline bool
 arch_atomic64_try_cmpxchg(atomic64_t *v, s64 *old, s64 new)
 {
@@ -2650,6 +2700,16 @@ arch_atomic64_try_cmpxchg(atomic64_t *v, s64 *old, s64 new)
 #endif
 
 #ifndef arch_atomic64_try_cmpxchg_acquire
+/**
+ * arch_atomic64_try_cmpxchg_acquire - Atomic cmpxchg with bool return value
+ * @v:  pointer of type atomic64_t
+ * @old:  desired old value to match
+ * @new:  new value to put in
+ *
+ * Atomically compares @new to *@v, and if equal, stores @new to *@v,
+ * providing acquire ordering.
+ * Returns @true if the cmpxchg operation succeeded, and false otherwise.
+ */
 static __always_inline bool
 arch_atomic64_try_cmpxchg_acquire(atomic64_t *v, s64 *old, s64 new)
 {
@@ -2663,6 +2723,16 @@ arch_atomic64_try_cmpxchg_acquire(atomic64_t *v, s64 *old, s64 new)
 #endif
 
 #ifndef arch_atomic64_try_cmpxchg_release
+/**
+ * arch_atomic64_try_cmpxchg_release - Atomic cmpxchg with bool return value
+ * @v:  pointer of type atomic64_t
+ * @old:  desired old value to match
+ * @new:  new value to put in
+ *
+ * Atomically compares @new to *@v, and if equal, stores @new to *@v,
+ * providing release ordering.
+ * Returns @true if the cmpxchg operation succeeded, and false otherwise.
+ */
 static __always_inline bool
 arch_atomic64_try_cmpxchg_release(atomic64_t *v, s64 *old, s64 new)
 {
@@ -2676,6 +2746,16 @@ arch_atomic64_try_cmpxchg_release(atomic64_t *v, s64 *old, s64 new)
 #endif
 
 #ifndef arch_atomic64_try_cmpxchg_relaxed
+/**
+ * arch_atomic64_try_cmpxchg_relaxed - Atomic cmpxchg with bool return value
+ * @v:  pointer of type atomic64_t
+ * @old:  desired old value to match
+ * @new:  new value to put in
+ *
+ * Atomically compares @new to *@v, and if equal, stores @new to *@v,
+ * providing no ordering.
+ * Returns @true if the cmpxchg operation succeeded, and false otherwise.
+ */
 static __always_inline bool
 arch_atomic64_try_cmpxchg_relaxed(atomic64_t *v, s64 *old, s64 new)
 {
@@ -3000,4 +3080,4 @@ arch_atomic64_dec_if_positive(atomic64_t *v)
 #endif
 
 #endif /* _LINUX_ATOMIC_FALLBACK_H */
-// 1deee68fe3a3ccf4de29224d250aa352128a79d8
+// c223e2a3dbeb069ab0b8f22626b43b9c8bf7a722
