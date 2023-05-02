@@ -1625,6 +1625,14 @@ arch_atomic_inc_unless_negative(atomic_t *v)
 #endif
 
 #ifndef arch_atomic_dec_unless_positive
+/**
+ * arch_atomic_dec_unless_positive - Atomic decrement if old value is non-positive
+ * @v: pointer of type atomic_t
+ *
+ * Atomically decrement @v, but only if the original value is less
+ * than or equal to zero.  Return @true if the decrement happened and
+ * @false otherwise.
+ */
 static __always_inline bool
 arch_atomic_dec_unless_positive(atomic_t *v)
 {
@@ -3057,6 +3065,14 @@ arch_atomic64_inc_unless_negative(atomic64_t *v)
 #endif
 
 #ifndef arch_atomic64_dec_unless_positive
+/**
+ * arch_atomic64_dec_unless_positive - Atomic decrement if old value is non-positive
+ * @v: pointer of type atomic64_t
+ *
+ * Atomically decrement @v, but only if the original value is less
+ * than or equal to zero.  Return @true if the decrement happened and
+ * @false otherwise.
+ */
 static __always_inline bool
 arch_atomic64_dec_unless_positive(atomic64_t *v)
 {
@@ -3100,4 +3116,4 @@ arch_atomic64_dec_if_positive(atomic64_t *v)
 #endif
 
 #endif /* _LINUX_ATOMIC_FALLBACK_H */
-// ec79091e27d76ab38db7e2da5134883694f47bb9
+// 7402503edaba3549016388aa10b9eaf9994dad5a
