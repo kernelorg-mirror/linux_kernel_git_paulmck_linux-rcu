@@ -370,6 +370,22 @@ codecs, and devices with strict requirements for interface clocking.
 Synchronization Primitives
 ==========================
 
+Atomic Operations
+-----------------
+
+This lists the docbook-generated definitions for the architecture-specific
+variants of the atomic operations.  In order to find the documentation
+for the primitive of interest, prefix the name with "arch_", change
+"atomic_long" to just plain "atomic", and strip any trailing "_acquire",
+"_release", or "_relaxed".
+
+.. kernel-doc:: include/linux/atomic/atomic-arch-fallback.h
+   :internal:
+
+.. kernel-doc:: arch/x86/include/asm/atomic.h
+
+For more detail, see the "atomic_t.txt" file in the "Documentation" directory.
+
 Read-Copy Update (RCU)
 ----------------------
 
