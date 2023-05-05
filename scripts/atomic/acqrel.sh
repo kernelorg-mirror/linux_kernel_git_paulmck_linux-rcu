@@ -1,0 +1,47 @@
+cat <<EOF
+/**
+ * arch_${atomic}_${pfx}${name}${sfx}_${acqrel} - Atomic ${name} with ${acqrel} ordering
+EOF
+echo ${args} | tr -d ' ' | tr ',' '\012' |
+	awk -v atomic=${atomic} -v name_op=${name} -v ret=${ret} -v oldnew=${docbook_oldnew} -v acqrel=${acqrel} '
+	BEGIN {
+		desc["i"] = "value to " name_op;
+		desc["v"] = "pointer of type " atomic;
+		desc["old"] = "desired old value to match";
+		desc["new"] = "new value to put in";
+		opmod = "with";
+		if (name_op == "add")
+			opmod = "to";
+		else if (name_op == "sub")
+			opmod = "from";
+	}
+
+	{
+		print " * @" $1 ": " desc[$1];
+		have[$1] = 1;
+	}
+
+	END {
+		print " *";
+		if (name_op ~ /cmpxchg/) {
+			print " * Atomically compares @new to *@v, and if equal,";
+			print " * stores @new to *@v, providing " acqrel " ordering.";
+		} else if (have["i"]) {
+			print " * Atomically " name_op " @i " opmod " @v using " acqrel " ordering.";
+		} else {
+			print " * Atomically " name_op " @v using " acqrel " ordering.";
+		}
+		if (ret == "bool") {
+			print " * Returns @true if the cmpxchg operation succeeded,";
+			print " * and false otherwise.";
+		} else if (name_op == "cmpxchg") {
+			print " * Returns the old value *@v regardless of the result of";
+			print " * the comparison.  Therefore, if the return value is not";
+			print " * equal to @old, the cmpxchg operation failed.";
+		} else if (name_op == "xchg") {
+			print " * Return old value.";
+		} else {
+			print " * Return " oldnew " value.";
+		}
+	}'
+echo " */"
