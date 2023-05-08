@@ -1,6 +1,6 @@
 cat <<EOF
 /**
- * arch_${atomic}_${pfx}inc${sfx}${order} - Atomic and-not
+ * arch_${atomic}_${pfx}andnot${sfx}${order} - Atomic and-not
  * @i: the quantity to and-not with *@v
  * @v: pointer of type ${atomic}_t
  *
