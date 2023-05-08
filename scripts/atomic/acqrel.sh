@@ -1,10 +1,16 @@
-cat <<EOF
-/**
- * arch_${atomic}_${pfx}${name}${sfx}_${acqrel} - Atomic ${name} with ${acqrel} ordering
-EOF
 echo ${args} | tr -d ' ' | tr ',' '\012' |
-	awk -v atomic=${atomic} -v name_op=${name} -v ret=${ret} -v oldnew=${docbook_oldnew} -v acqrel=${acqrel} '
+	awk -v atomic=${atomic} \
+	    -v name_op=${name} \
+	    -v ret=${ret} \
+	    -v oldnew=${docbook_oldnew} \
+	    -v acqrel=${acqrel} \
+	    -v basefuncname=arch_${atomic}_${pfx}${name}${sfx} '
 	BEGIN {
+		print "/**";
+		sfxord = "_" acqrel;
+		if (acqrel == "full")
+			sfxord = "";
+		print " * " basefuncname sfxord " - Atomic " name_op " with " acqrel " ordering";
 		longname["add"] = "add";
 		longname["sub"] = "subtract";
 		longname["inc"] = "increment";
@@ -14,6 +20,7 @@ echo ${args} | tr -d ' ' | tr ',' '\012' |
 		longname["or"] = "OR";
 		longname["xor"] = "XOR";
 		longname["xchg"] = "exchange";
+		longname["add_negative"] = "add";
 		desc["i"] = "value to " longname[name_op];
 		desc["v"] = "pointer of type " atomic "_t";
 		desc["old"] = "desired old value to match";
@@ -50,6 +57,9 @@ echo ${args} | tr -d ' ' | tr ',' '\012' |
 			print " * equal to @old, the cmpxchg operation failed.";
 		} else if (name_op == "xchg") {
 			print " * Return old value.";
+		} else if (name_op == "add_negative") {
+			print " * Return @true if the result is negative, or @false when"
+			print " * the result is greater than or equal to zero.";
 		} else {
 			print " * Return " oldnew " value.";
 		}
