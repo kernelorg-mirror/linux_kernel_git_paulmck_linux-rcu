@@ -107,26 +107,12 @@ static __always_inline bool arch_atomic_add_negative(int i, atomic_t *v)
 }
 #define arch_atomic_add_negative arch_atomic_add_negative
 
-/**
- * arch_atomic_add_return - add integer and return
- * @i: integer value to add
- * @v: pointer of type atomic_t
- *
- * Atomically adds @i to @v and returns @i + @v
- */
 static __always_inline int arch_atomic_add_return(int i, atomic_t *v)
 {
 	return i + xadd(&v->counter, i);
 }
 #define arch_atomic_add_return arch_atomic_add_return
 
-/**
- * arch_atomic_sub_return - subtract integer and return
- * @v: pointer of type atomic_t
- * @i: integer value to subtract
- *
- * Atomically subtracts @i from @v and returns @v - @i
- */
 static __always_inline int arch_atomic_sub_return(int i, atomic_t *v)
 {
 	return arch_atomic_add_return(-i, v);
@@ -145,17 +131,6 @@ static __always_inline int arch_atomic_fetch_sub(int i, atomic_t *v)
 }
 #define arch_atomic_fetch_sub arch_atomic_fetch_sub
 
-/**
- * arch_atomic_cmpxchg - atomic compare-and-exchange values
- * @v: pointer to value to change
- * @old:  desired old value to match
- * @new:  new value to put in
- *
- * Atomically compares @new to *@v, and if equal, stores @new to *@v.
- * Returns the old value *@v regardless of the result of the comparison.
- * Therefore, if the return value is not equal to @old, the
- * arch_atomic_cmpxchg() failed.
- */
 static __always_inline int arch_atomic_cmpxchg(atomic_t *v, int old, int new)
 {
 	return arch_cmpxchg(&v->counter, old, new);
@@ -168,14 +143,6 @@ static __always_inline bool arch_atomic_try_cmpxchg(atomic_t *v, int *old, int n
 }
 #define arch_atomic_try_cmpxchg arch_atomic_try_cmpxchg
 
-/**
- * arch_atomic_xchg - atomically exchange a value into memory
- * @v: pointer to memory to change
- * @new: new value
- *
- * Atomically stores @new into @v.
- * Returns the value that was overwritten by this atomic store.
- */
 static __always_inline int arch_atomic_xchg(atomic_t *v, int new)
 {
 	return arch_xchg(&v->counter, new);
