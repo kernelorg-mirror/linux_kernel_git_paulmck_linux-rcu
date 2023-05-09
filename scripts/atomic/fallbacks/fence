@@ -1,3 +1,5 @@
+if /bin/sh ${ATOMICDIR}/chkdup.sh arch_${atomic}_${pfx}${name}${sfx} fence
+then
 acqrel=full
 . ${ATOMICDIR}/acqrel.sh
 cat <<EOF
@@ -11,3 +13,4 @@ arch_${atomic}_${pfx}${name}${sfx}(${params})
 	return ret;
 }
 EOF
+fi
