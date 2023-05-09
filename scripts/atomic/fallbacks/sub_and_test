@@ -10,10 +10,12 @@ cat <<EOF
  * @true if the result is zero, or @false for all
  * other cases.
  */
+EOF
+fi
+cat <<EOF
 static __always_inline bool
 arch_${atomic}_sub_and_test(${int} i, ${atomic}_t *v)
 {
 	return arch_${atomic}_sub_return(i, v) == 0;
 }
 EOF
-fi

@@ -8,10 +8,12 @@ cat <<EOF
  * Atomically increments @v by 1, if @v is non-zero.
  * Returns @true if the increment was done.
  */
+EOF
+fi
+cat <<EOF
 static __always_inline bool
 arch_${atomic}_inc_not_zero(${atomic}_t *v)
 {
 	return arch_${atomic}_add_unless(v, 1, 0);
 }
 EOF
-fi

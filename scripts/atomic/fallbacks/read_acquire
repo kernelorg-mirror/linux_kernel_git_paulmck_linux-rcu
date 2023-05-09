@@ -8,6 +8,9 @@ cat <<EOF
  * Atomically load from *@v with acquire ordering, returning the value
  * loaded.
  */
+EOF
+fi
+cat <<EOF
 static __always_inline ${ret}
 arch_${atomic}_read_acquire(const ${atomic}_t *v)
 {
@@ -23,4 +26,3 @@ arch_${atomic}_read_acquire(const ${atomic}_t *v)
 	return ret;
 }
 EOF
-fi

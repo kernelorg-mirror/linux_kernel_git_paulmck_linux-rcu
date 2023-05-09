@@ -639,17 +639,39 @@ arch_atomic_inc_return_relaxed(atomic_t *v)
 #else /* arch_atomic_inc_return_relaxed */
 
 #ifndef arch_atomic_inc_return_acquire
-BUILD_BUG_ON(1) // Fallback acquire omitting duplicate arch_atomic_inc_return_acquire().
+// Fallback acquire omitting duplicate arch_atomic_inc_return_acquire() kernel-doc header.
+static __always_inline int
+arch_atomic_inc_return_acquire(atomic_t *v)
+{
+	int ret = arch_atomic_inc_return_relaxed(v);
+	__atomic_acquire_fence();
+	return ret;
+}
 #define arch_atomic_inc_return_acquire arch_atomic_inc_return_acquire
 #endif
 
 #ifndef arch_atomic_inc_return_release
-BUILD_BUG_ON(1) // Fallback release omitting duplicate arch_atomic_inc_return_release().
+// Fallback release omitting duplicate arch_atomic_inc_return_release() kernel-doc header.
+static __always_inline int
+arch_atomic_inc_return_release(atomic_t *v)
+{
+	__atomic_release_fence();
+	return arch_atomic_inc_return_relaxed(v);
+}
 #define arch_atomic_inc_return_release arch_atomic_inc_return_release
 #endif
 
 #ifndef arch_atomic_inc_return
-BUILD_BUG_ON(1) // Fallback fence omitting duplicate arch_atomic_inc_return().
+// Fallback fence omitting duplicate arch_atomic_inc_return() kernel-doc header.
+static __always_inline int
+arch_atomic_inc_return(atomic_t *v)
+{
+	int ret;
+	__atomic_pre_full_fence();
+	ret = arch_atomic_inc_return_relaxed(v);
+	__atomic_post_full_fence();
+	return ret;
+}
 #define arch_atomic_inc_return arch_atomic_inc_return
 #endif
 
@@ -729,17 +751,39 @@ arch_atomic_fetch_inc_relaxed(atomic_t *v)
 #else /* arch_atomic_fetch_inc_relaxed */
 
 #ifndef arch_atomic_fetch_inc_acquire
-BUILD_BUG_ON(1) // Fallback acquire omitting duplicate arch_atomic_fetch_inc_acquire().
+// Fallback acquire omitting duplicate arch_atomic_fetch_inc_acquire() kernel-doc header.
+static __always_inline int
+arch_atomic_fetch_inc_acquire(atomic_t *v)
+{
+	int ret = arch_atomic_fetch_inc_relaxed(v);
+	__atomic_acquire_fence();
+	return ret;
+}
 #define arch_atomic_fetch_inc_acquire arch_atomic_fetch_inc_acquire
 #endif
 
 #ifndef arch_atomic_fetch_inc_release
-BUILD_BUG_ON(1) // Fallback release omitting duplicate arch_atomic_fetch_inc_release().
+// Fallback release omitting duplicate arch_atomic_fetch_inc_release() kernel-doc header.
+static __always_inline int
+arch_atomic_fetch_inc_release(atomic_t *v)
+{
+	__atomic_release_fence();
+	return arch_atomic_fetch_inc_relaxed(v);
+}
 #define arch_atomic_fetch_inc_release arch_atomic_fetch_inc_release
 #endif
 
 #ifndef arch_atomic_fetch_inc
-BUILD_BUG_ON(1) // Fallback fence omitting duplicate arch_atomic_fetch_inc().
+// Fallback fence omitting duplicate arch_atomic_fetch_inc() kernel-doc header.
+static __always_inline int
+arch_atomic_fetch_inc(atomic_t *v)
+{
+	int ret;
+	__atomic_pre_full_fence();
+	ret = arch_atomic_fetch_inc_relaxed(v);
+	__atomic_post_full_fence();
+	return ret;
+}
 #define arch_atomic_fetch_inc arch_atomic_fetch_inc
 #endif
 
@@ -835,17 +879,39 @@ arch_atomic_dec_return_relaxed(atomic_t *v)
 #else /* arch_atomic_dec_return_relaxed */
 
 #ifndef arch_atomic_dec_return_acquire
-BUILD_BUG_ON(1) // Fallback acquire omitting duplicate arch_atomic_dec_return_acquire().
+// Fallback acquire omitting duplicate arch_atomic_dec_return_acquire() kernel-doc header.
+static __always_inline int
+arch_atomic_dec_return_acquire(atomic_t *v)
+{
+	int ret = arch_atomic_dec_return_relaxed(v);
+	__atomic_acquire_fence();
+	return ret;
+}
 #define arch_atomic_dec_return_acquire arch_atomic_dec_return_acquire
 #endif
 
 #ifndef arch_atomic_dec_return_release
-BUILD_BUG_ON(1) // Fallback release omitting duplicate arch_atomic_dec_return_release().
+// Fallback release omitting duplicate arch_atomic_dec_return_release() kernel-doc header.
+static __always_inline int
+arch_atomic_dec_return_release(atomic_t *v)
+{
+	__atomic_release_fence();
+	return arch_atomic_dec_return_relaxed(v);
+}
 #define arch_atomic_dec_return_release arch_atomic_dec_return_release
 #endif
 
 #ifndef arch_atomic_dec_return
-BUILD_BUG_ON(1) // Fallback fence omitting duplicate arch_atomic_dec_return().
+// Fallback fence omitting duplicate arch_atomic_dec_return() kernel-doc header.
+static __always_inline int
+arch_atomic_dec_return(atomic_t *v)
+{
+	int ret;
+	__atomic_pre_full_fence();
+	ret = arch_atomic_dec_return_relaxed(v);
+	__atomic_post_full_fence();
+	return ret;
+}
 #define arch_atomic_dec_return arch_atomic_dec_return
 #endif
 
@@ -925,17 +991,39 @@ arch_atomic_fetch_dec_relaxed(atomic_t *v)
 #else /* arch_atomic_fetch_dec_relaxed */
 
 #ifndef arch_atomic_fetch_dec_acquire
-BUILD_BUG_ON(1) // Fallback acquire omitting duplicate arch_atomic_fetch_dec_acquire().
+// Fallback acquire omitting duplicate arch_atomic_fetch_dec_acquire() kernel-doc header.
+static __always_inline int
+arch_atomic_fetch_dec_acquire(atomic_t *v)
+{
+	int ret = arch_atomic_fetch_dec_relaxed(v);
+	__atomic_acquire_fence();
+	return ret;
+}
 #define arch_atomic_fetch_dec_acquire arch_atomic_fetch_dec_acquire
 #endif
 
 #ifndef arch_atomic_fetch_dec_release
-BUILD_BUG_ON(1) // Fallback release omitting duplicate arch_atomic_fetch_dec_release().
+// Fallback release omitting duplicate arch_atomic_fetch_dec_release() kernel-doc header.
+static __always_inline int
+arch_atomic_fetch_dec_release(atomic_t *v)
+{
+	__atomic_release_fence();
+	return arch_atomic_fetch_dec_relaxed(v);
+}
 #define arch_atomic_fetch_dec_release arch_atomic_fetch_dec_release
 #endif
 
 #ifndef arch_atomic_fetch_dec
-BUILD_BUG_ON(1) // Fallback fence omitting duplicate arch_atomic_fetch_dec().
+// Fallback fence omitting duplicate arch_atomic_fetch_dec() kernel-doc header.
+static __always_inline int
+arch_atomic_fetch_dec(atomic_t *v)
+{
+	int ret;
+	__atomic_pre_full_fence();
+	ret = arch_atomic_fetch_dec_relaxed(v);
+	__atomic_post_full_fence();
+	return ret;
+}
 #define arch_atomic_fetch_dec arch_atomic_fetch_dec
 #endif
 
@@ -1102,17 +1190,39 @@ arch_atomic_fetch_andnot_relaxed(int i, atomic_t *v)
 #else /* arch_atomic_fetch_andnot_relaxed */
 
 #ifndef arch_atomic_fetch_andnot_acquire
-BUILD_BUG_ON(1) // Fallback acquire omitting duplicate arch_atomic_fetch_andnot_acquire().
+// Fallback acquire omitting duplicate arch_atomic_fetch_andnot_acquire() kernel-doc header.
+static __always_inline int
+arch_atomic_fetch_andnot_acquire(int i, atomic_t *v)
+{
+	int ret = arch_atomic_fetch_andnot_relaxed(i, v);
+	__atomic_acquire_fence();
+	return ret;
+}
 #define arch_atomic_fetch_andnot_acquire arch_atomic_fetch_andnot_acquire
 #endif
 
 #ifndef arch_atomic_fetch_andnot_release
-BUILD_BUG_ON(1) // Fallback release omitting duplicate arch_atomic_fetch_andnot_release().
+// Fallback release omitting duplicate arch_atomic_fetch_andnot_release() kernel-doc header.
+static __always_inline int
+arch_atomic_fetch_andnot_release(int i, atomic_t *v)
+{
+	__atomic_release_fence();
+	return arch_atomic_fetch_andnot_relaxed(i, v);
+}
 #define arch_atomic_fetch_andnot_release arch_atomic_fetch_andnot_release
 #endif
 
 #ifndef arch_atomic_fetch_andnot
-BUILD_BUG_ON(1) // Fallback fence omitting duplicate arch_atomic_fetch_andnot().
+// Fallback fence omitting duplicate arch_atomic_fetch_andnot() kernel-doc header.
+static __always_inline int
+arch_atomic_fetch_andnot(int i, atomic_t *v)
+{
+	int ret;
+	__atomic_pre_full_fence();
+	ret = arch_atomic_fetch_andnot_relaxed(i, v);
+	__atomic_post_full_fence();
+	return ret;
+}
 #define arch_atomic_fetch_andnot arch_atomic_fetch_andnot
 #endif
 
@@ -1496,17 +1606,39 @@ arch_atomic_try_cmpxchg_relaxed(atomic_t *v, int *old, int new)
 #else /* arch_atomic_try_cmpxchg_relaxed */
 
 #ifndef arch_atomic_try_cmpxchg_acquire
-BUILD_BUG_ON(1) // Fallback acquire omitting duplicate arch_atomic_try_cmpxchg_acquire().
+// Fallback acquire omitting duplicate arch_atomic_try_cmpxchg_acquire() kernel-doc header.
+static __always_inline bool
+arch_atomic_try_cmpxchg_acquire(atomic_t *v, int *old, int new)
+{
+	bool ret = arch_atomic_try_cmpxchg_relaxed(v, old, new);
+	__atomic_acquire_fence();
+	return ret;
+}
 #define arch_atomic_try_cmpxchg_acquire arch_atomic_try_cmpxchg_acquire
 #endif
 
 #ifndef arch_atomic_try_cmpxchg_release
-BUILD_BUG_ON(1) // Fallback release omitting duplicate arch_atomic_try_cmpxchg_release().
+// Fallback release omitting duplicate arch_atomic_try_cmpxchg_release() kernel-doc header.
+static __always_inline bool
+arch_atomic_try_cmpxchg_release(atomic_t *v, int *old, int new)
+{
+	__atomic_release_fence();
+	return arch_atomic_try_cmpxchg_relaxed(v, old, new);
+}
 #define arch_atomic_try_cmpxchg_release arch_atomic_try_cmpxchg_release
 #endif
 
 #ifndef arch_atomic_try_cmpxchg
-BUILD_BUG_ON(1) // Fallback fence omitting duplicate arch_atomic_try_cmpxchg().
+// Fallback fence omitting duplicate arch_atomic_try_cmpxchg() kernel-doc header.
+static __always_inline bool
+arch_atomic_try_cmpxchg(atomic_t *v, int *old, int new)
+{
+	bool ret;
+	__atomic_pre_full_fence();
+	ret = arch_atomic_try_cmpxchg_relaxed(v, old, new);
+	__atomic_post_full_fence();
+	return ret;
+}
 #define arch_atomic_try_cmpxchg arch_atomic_try_cmpxchg
 #endif
 
@@ -1642,17 +1774,39 @@ arch_atomic_add_negative_relaxed(int i, atomic_t *v)
 #else /* arch_atomic_add_negative_relaxed */
 
 #ifndef arch_atomic_add_negative_acquire
-BUILD_BUG_ON(1) // Fallback acquire omitting duplicate arch_atomic_add_negative_acquire().
+// Fallback acquire omitting duplicate arch_atomic_add_negative_acquire() kernel-doc header.
+static __always_inline bool
+arch_atomic_add_negative_acquire(int i, atomic_t *v)
+{
+	bool ret = arch_atomic_add_negative_relaxed(i, v);
+	__atomic_acquire_fence();
+	return ret;
+}
 #define arch_atomic_add_negative_acquire arch_atomic_add_negative_acquire
 #endif
 
 #ifndef arch_atomic_add_negative_release
-BUILD_BUG_ON(1) // Fallback release omitting duplicate arch_atomic_add_negative_release().
+// Fallback release omitting duplicate arch_atomic_add_negative_release() kernel-doc header.
+static __always_inline bool
+arch_atomic_add_negative_release(int i, atomic_t *v)
+{
+	__atomic_release_fence();
+	return arch_atomic_add_negative_relaxed(i, v);
+}
 #define arch_atomic_add_negative_release arch_atomic_add_negative_release
 #endif
 
 #ifndef arch_atomic_add_negative
-BUILD_BUG_ON(1) // Fallback fence omitting duplicate arch_atomic_add_negative().
+// Fallback fence omitting duplicate arch_atomic_add_negative() kernel-doc header.
+static __always_inline bool
+arch_atomic_add_negative(int i, atomic_t *v)
+{
+	bool ret;
+	__atomic_pre_full_fence();
+	ret = arch_atomic_add_negative_relaxed(i, v);
+	__atomic_post_full_fence();
+	return ret;
+}
 #define arch_atomic_add_negative arch_atomic_add_negative
 #endif
 
@@ -2196,17 +2350,39 @@ arch_atomic64_inc_return_relaxed(atomic64_t *v)
 #else /* arch_atomic64_inc_return_relaxed */
 
 #ifndef arch_atomic64_inc_return_acquire
-BUILD_BUG_ON(1) // Fallback acquire omitting duplicate arch_atomic64_inc_return_acquire().
+// Fallback acquire omitting duplicate arch_atomic64_inc_return_acquire() kernel-doc header.
+static __always_inline s64
+arch_atomic64_inc_return_acquire(atomic64_t *v)
+{
+	s64 ret = arch_atomic64_inc_return_relaxed(v);
+	__atomic_acquire_fence();
+	return ret;
+}
 #define arch_atomic64_inc_return_acquire arch_atomic64_inc_return_acquire
 #endif
 
 #ifndef arch_atomic64_inc_return_release
-BUILD_BUG_ON(1) // Fallback release omitting duplicate arch_atomic64_inc_return_release().
+// Fallback release omitting duplicate arch_atomic64_inc_return_release() kernel-doc header.
+static __always_inline s64
+arch_atomic64_inc_return_release(atomic64_t *v)
+{
+	__atomic_release_fence();
+	return arch_atomic64_inc_return_relaxed(v);
+}
 #define arch_atomic64_inc_return_release arch_atomic64_inc_return_release
 #endif
 
 #ifndef arch_atomic64_inc_return
-BUILD_BUG_ON(1) // Fallback fence omitting duplicate arch_atomic64_inc_return().
+// Fallback fence omitting duplicate arch_atomic64_inc_return() kernel-doc header.
+static __always_inline s64
+arch_atomic64_inc_return(atomic64_t *v)
+{
+	s64 ret;
+	__atomic_pre_full_fence();
+	ret = arch_atomic64_inc_return_relaxed(v);
+	__atomic_post_full_fence();
+	return ret;
+}
 #define arch_atomic64_inc_return arch_atomic64_inc_return
 #endif
 
@@ -2286,17 +2462,39 @@ arch_atomic64_fetch_inc_relaxed(atomic64_t *v)
 #else /* arch_atomic64_fetch_inc_relaxed */
 
 #ifndef arch_atomic64_fetch_inc_acquire
-BUILD_BUG_ON(1) // Fallback acquire omitting duplicate arch_atomic64_fetch_inc_acquire().
+// Fallback acquire omitting duplicate arch_atomic64_fetch_inc_acquire() kernel-doc header.
+static __always_inline s64
+arch_atomic64_fetch_inc_acquire(atomic64_t *v)
+{
+	s64 ret = arch_atomic64_fetch_inc_relaxed(v);
+	__atomic_acquire_fence();
+	return ret;
+}
 #define arch_atomic64_fetch_inc_acquire arch_atomic64_fetch_inc_acquire
 #endif
 
 #ifndef arch_atomic64_fetch_inc_release
-BUILD_BUG_ON(1) // Fallback release omitting duplicate arch_atomic64_fetch_inc_release().
+// Fallback release omitting duplicate arch_atomic64_fetch_inc_release() kernel-doc header.
+static __always_inline s64
+arch_atomic64_fetch_inc_release(atomic64_t *v)
+{
+	__atomic_release_fence();
+	return arch_atomic64_fetch_inc_relaxed(v);
+}
 #define arch_atomic64_fetch_inc_release arch_atomic64_fetch_inc_release
 #endif
 
 #ifndef arch_atomic64_fetch_inc
-BUILD_BUG_ON(1) // Fallback fence omitting duplicate arch_atomic64_fetch_inc().
+// Fallback fence omitting duplicate arch_atomic64_fetch_inc() kernel-doc header.
+static __always_inline s64
+arch_atomic64_fetch_inc(atomic64_t *v)
+{
+	s64 ret;
+	__atomic_pre_full_fence();
+	ret = arch_atomic64_fetch_inc_relaxed(v);
+	__atomic_post_full_fence();
+	return ret;
+}
 #define arch_atomic64_fetch_inc arch_atomic64_fetch_inc
 #endif
 
@@ -2392,17 +2590,39 @@ arch_atomic64_dec_return_relaxed(atomic64_t *v)
 #else /* arch_atomic64_dec_return_relaxed */
 
 #ifndef arch_atomic64_dec_return_acquire
-BUILD_BUG_ON(1) // Fallback acquire omitting duplicate arch_atomic64_dec_return_acquire().
+// Fallback acquire omitting duplicate arch_atomic64_dec_return_acquire() kernel-doc header.
+static __always_inline s64
+arch_atomic64_dec_return_acquire(atomic64_t *v)
+{
+	s64 ret = arch_atomic64_dec_return_relaxed(v);
+	__atomic_acquire_fence();
+	return ret;
+}
 #define arch_atomic64_dec_return_acquire arch_atomic64_dec_return_acquire
 #endif
 
 #ifndef arch_atomic64_dec_return_release
-BUILD_BUG_ON(1) // Fallback release omitting duplicate arch_atomic64_dec_return_release().
+// Fallback release omitting duplicate arch_atomic64_dec_return_release() kernel-doc header.
+static __always_inline s64
+arch_atomic64_dec_return_release(atomic64_t *v)
+{
+	__atomic_release_fence();
+	return arch_atomic64_dec_return_relaxed(v);
+}
 #define arch_atomic64_dec_return_release arch_atomic64_dec_return_release
 #endif
 
 #ifndef arch_atomic64_dec_return
-BUILD_BUG_ON(1) // Fallback fence omitting duplicate arch_atomic64_dec_return().
+// Fallback fence omitting duplicate arch_atomic64_dec_return() kernel-doc header.
+static __always_inline s64
+arch_atomic64_dec_return(atomic64_t *v)
+{
+	s64 ret;
+	__atomic_pre_full_fence();
+	ret = arch_atomic64_dec_return_relaxed(v);
+	__atomic_post_full_fence();
+	return ret;
+}
 #define arch_atomic64_dec_return arch_atomic64_dec_return
 #endif
 
@@ -2482,17 +2702,39 @@ arch_atomic64_fetch_dec_relaxed(atomic64_t *v)
 #else /* arch_atomic64_fetch_dec_relaxed */
 
 #ifndef arch_atomic64_fetch_dec_acquire
-BUILD_BUG_ON(1) // Fallback acquire omitting duplicate arch_atomic64_fetch_dec_acquire().
+// Fallback acquire omitting duplicate arch_atomic64_fetch_dec_acquire() kernel-doc header.
+static __always_inline s64
+arch_atomic64_fetch_dec_acquire(atomic64_t *v)
+{
+	s64 ret = arch_atomic64_fetch_dec_relaxed(v);
+	__atomic_acquire_fence();
+	return ret;
+}
 #define arch_atomic64_fetch_dec_acquire arch_atomic64_fetch_dec_acquire
 #endif
 
 #ifndef arch_atomic64_fetch_dec_release
-BUILD_BUG_ON(1) // Fallback release omitting duplicate arch_atomic64_fetch_dec_release().
+// Fallback release omitting duplicate arch_atomic64_fetch_dec_release() kernel-doc header.
+static __always_inline s64
+arch_atomic64_fetch_dec_release(atomic64_t *v)
+{
+	__atomic_release_fence();
+	return arch_atomic64_fetch_dec_relaxed(v);
+}
 #define arch_atomic64_fetch_dec_release arch_atomic64_fetch_dec_release
 #endif
 
 #ifndef arch_atomic64_fetch_dec
-BUILD_BUG_ON(1) // Fallback fence omitting duplicate arch_atomic64_fetch_dec().
+// Fallback fence omitting duplicate arch_atomic64_fetch_dec() kernel-doc header.
+static __always_inline s64
+arch_atomic64_fetch_dec(atomic64_t *v)
+{
+	s64 ret;
+	__atomic_pre_full_fence();
+	ret = arch_atomic64_fetch_dec_relaxed(v);
+	__atomic_post_full_fence();
+	return ret;
+}
 #define arch_atomic64_fetch_dec arch_atomic64_fetch_dec
 #endif
 
@@ -2659,17 +2901,39 @@ arch_atomic64_fetch_andnot_relaxed(s64 i, atomic64_t *v)
 #else /* arch_atomic64_fetch_andnot_relaxed */
 
 #ifndef arch_atomic64_fetch_andnot_acquire
-BUILD_BUG_ON(1) // Fallback acquire omitting duplicate arch_atomic64_fetch_andnot_acquire().
+// Fallback acquire omitting duplicate arch_atomic64_fetch_andnot_acquire() kernel-doc header.
+static __always_inline s64
+arch_atomic64_fetch_andnot_acquire(s64 i, atomic64_t *v)
+{
+	s64 ret = arch_atomic64_fetch_andnot_relaxed(i, v);
+	__atomic_acquire_fence();
+	return ret;
+}
 #define arch_atomic64_fetch_andnot_acquire arch_atomic64_fetch_andnot_acquire
 #endif
 
 #ifndef arch_atomic64_fetch_andnot_release
-BUILD_BUG_ON(1) // Fallback release omitting duplicate arch_atomic64_fetch_andnot_release().
+// Fallback release omitting duplicate arch_atomic64_fetch_andnot_release() kernel-doc header.
+static __always_inline s64
+arch_atomic64_fetch_andnot_release(s64 i, atomic64_t *v)
+{
+	__atomic_release_fence();
+	return arch_atomic64_fetch_andnot_relaxed(i, v);
+}
 #define arch_atomic64_fetch_andnot_release arch_atomic64_fetch_andnot_release
 #endif
 
 #ifndef arch_atomic64_fetch_andnot
-BUILD_BUG_ON(1) // Fallback fence omitting duplicate arch_atomic64_fetch_andnot().
+// Fallback fence omitting duplicate arch_atomic64_fetch_andnot() kernel-doc header.
+static __always_inline s64
+arch_atomic64_fetch_andnot(s64 i, atomic64_t *v)
+{
+	s64 ret;
+	__atomic_pre_full_fence();
+	ret = arch_atomic64_fetch_andnot_relaxed(i, v);
+	__atomic_post_full_fence();
+	return ret;
+}
 #define arch_atomic64_fetch_andnot arch_atomic64_fetch_andnot
 #endif
 
@@ -3053,17 +3317,39 @@ arch_atomic64_try_cmpxchg_relaxed(atomic64_t *v, s64 *old, s64 new)
 #else /* arch_atomic64_try_cmpxchg_relaxed */
 
 #ifndef arch_atomic64_try_cmpxchg_acquire
-BUILD_BUG_ON(1) // Fallback acquire omitting duplicate arch_atomic64_try_cmpxchg_acquire().
+// Fallback acquire omitting duplicate arch_atomic64_try_cmpxchg_acquire() kernel-doc header.
+static __always_inline bool
+arch_atomic64_try_cmpxchg_acquire(atomic64_t *v, s64 *old, s64 new)
+{
+	bool ret = arch_atomic64_try_cmpxchg_relaxed(v, old, new);
+	__atomic_acquire_fence();
+	return ret;
+}
 #define arch_atomic64_try_cmpxchg_acquire arch_atomic64_try_cmpxchg_acquire
 #endif
 
 #ifndef arch_atomic64_try_cmpxchg_release
-BUILD_BUG_ON(1) // Fallback release omitting duplicate arch_atomic64_try_cmpxchg_release().
+// Fallback release omitting duplicate arch_atomic64_try_cmpxchg_release() kernel-doc header.
+static __always_inline bool
+arch_atomic64_try_cmpxchg_release(atomic64_t *v, s64 *old, s64 new)
+{
+	__atomic_release_fence();
+	return arch_atomic64_try_cmpxchg_relaxed(v, old, new);
+}
 #define arch_atomic64_try_cmpxchg_release arch_atomic64_try_cmpxchg_release
 #endif
 
 #ifndef arch_atomic64_try_cmpxchg
-BUILD_BUG_ON(1) // Fallback fence omitting duplicate arch_atomic64_try_cmpxchg().
+// Fallback fence omitting duplicate arch_atomic64_try_cmpxchg() kernel-doc header.
+static __always_inline bool
+arch_atomic64_try_cmpxchg(atomic64_t *v, s64 *old, s64 new)
+{
+	bool ret;
+	__atomic_pre_full_fence();
+	ret = arch_atomic64_try_cmpxchg_relaxed(v, old, new);
+	__atomic_post_full_fence();
+	return ret;
+}
 #define arch_atomic64_try_cmpxchg arch_atomic64_try_cmpxchg
 #endif
 
@@ -3199,17 +3485,39 @@ arch_atomic64_add_negative_relaxed(s64 i, atomic64_t *v)
 #else /* arch_atomic64_add_negative_relaxed */
 
 #ifndef arch_atomic64_add_negative_acquire
-BUILD_BUG_ON(1) // Fallback acquire omitting duplicate arch_atomic64_add_negative_acquire().
+// Fallback acquire omitting duplicate arch_atomic64_add_negative_acquire() kernel-doc header.
+static __always_inline bool
+arch_atomic64_add_negative_acquire(s64 i, atomic64_t *v)
+{
+	bool ret = arch_atomic64_add_negative_relaxed(i, v);
+	__atomic_acquire_fence();
+	return ret;
+}
 #define arch_atomic64_add_negative_acquire arch_atomic64_add_negative_acquire
 #endif
 
 #ifndef arch_atomic64_add_negative_release
-BUILD_BUG_ON(1) // Fallback release omitting duplicate arch_atomic64_add_negative_release().
+// Fallback release omitting duplicate arch_atomic64_add_negative_release() kernel-doc header.
+static __always_inline bool
+arch_atomic64_add_negative_release(s64 i, atomic64_t *v)
+{
+	__atomic_release_fence();
+	return arch_atomic64_add_negative_relaxed(i, v);
+}
 #define arch_atomic64_add_negative_release arch_atomic64_add_negative_release
 #endif
 
 #ifndef arch_atomic64_add_negative
-BUILD_BUG_ON(1) // Fallback fence omitting duplicate arch_atomic64_add_negative().
+// Fallback fence omitting duplicate arch_atomic64_add_negative() kernel-doc header.
+static __always_inline bool
+arch_atomic64_add_negative(s64 i, atomic64_t *v)
+{
+	bool ret;
+	__atomic_pre_full_fence();
+	ret = arch_atomic64_add_negative_relaxed(i, v);
+	__atomic_post_full_fence();
+	return ret;
+}
 #define arch_atomic64_add_negative arch_atomic64_add_negative
 #endif
 
@@ -3350,4 +3658,4 @@ arch_atomic64_dec_if_positive(atomic64_t *v)
 #endif
 
 #endif /* _LINUX_ATOMIC_FALLBACK_H */
-// 2843d9e702f928e510b8eb096272e39943df4cd0
+// 9bf9febc5288ed9539d1b3cfbbc6e36743b74c3b

@@ -2,6 +2,7 @@ if /bin/sh ${ATOMICDIR}/chkdup.sh arch_${atomic}_${pfx}${name}${sfx}_release rel
 then
 acqrel=release
 . ${ATOMICDIR}/acqrel.sh
+fi
 cat <<EOF
 static __always_inline ${ret}
 arch_${atomic}_${pfx}${name}${sfx}_release(${params})
@@ -10,4 +11,3 @@ arch_${atomic}_${pfx}${name}${sfx}_release(${params})
 	${retstmt}arch_${atomic}_${pfx}${name}${sfx}_relaxed(${args});
 }
 EOF
-fi

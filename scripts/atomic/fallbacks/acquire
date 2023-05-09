@@ -2,6 +2,7 @@ if /bin/sh ${ATOMICDIR}/chkdup.sh arch_${atomic}_${pfx}${name}${sfx}_acquire acq
 then
 acqrel=acquire
 . ${ATOMICDIR}/acqrel.sh
+fi
 cat << EOF
 static __always_inline ${ret}
 arch_${atomic}_${pfx}${name}${sfx}_acquire(${params})
@@ -11,4 +12,3 @@ arch_${atomic}_${pfx}${name}${sfx}_acquire(${params})
 	return ret;
 }
 EOF
-fi

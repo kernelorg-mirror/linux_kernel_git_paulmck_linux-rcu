@@ -9,6 +9,9 @@ cat <<EOF
  * than or equal to zero.  Return @true if the increment happened and
  * @false otherwise.
  */
+EOF
+fi
+cat <<EOF
 static __always_inline bool
 arch_${atomic}_inc_unless_negative(${atomic}_t *v)
 {
@@ -22,4 +25,3 @@ arch_${atomic}_inc_unless_negative(${atomic}_t *v)
 	return true;
 }
 EOF
-fi

@@ -9,10 +9,12 @@ cat <<EOF
  * returns @true if the result is 0, or @false for all other
  * cases.
  */
+EOF
+fi
+cat <<EOF
 static __always_inline bool
 arch_${atomic}_dec_and_test(${atomic}_t *v)
 {
 	return arch_${atomic}_dec_return(v) == 0;
 }
 EOF
-fi
