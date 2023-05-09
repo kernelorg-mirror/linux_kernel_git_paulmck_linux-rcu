@@ -1,3 +1,5 @@
+if /bin/sh ${ATOMICDIR}/chkdup.sh arch_${atomic}_add_negative${order} add_negative
+then
 cat <<EOF
 /**
  * arch_${atomic}_add_negative${order} - Add and test if negative
@@ -13,3 +15,4 @@ arch_${atomic}_add_negative${order}(${int} i, ${atomic}_t *v)
 	return arch_${atomic}_add_return${order}(i, v) < 0;
 }
 EOF
+fi

@@ -1,3 +1,5 @@
+if /bin/sh ${ATOMICDIR}/chkdup.sh arch_${atomic}_inc_not_zero inc_not_zero
+then
 cat <<EOF
 /**
  * arch_${atomic}_inc_not_zero - increment unless the number is zero
@@ -12,3 +14,4 @@ arch_${atomic}_inc_not_zero(${atomic}_t *v)
 	return arch_${atomic}_add_unless(v, 1, 0);
 }
 EOF
+fi
