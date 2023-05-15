@@ -133,7 +133,7 @@ static struct rcu_tasks rt_name =							\
 	.gp_func = gp,									\
 	.call_func = call,								\
 	.rtpcpu = &rt_name ## __percpu,							\
-	.lazy_jiffies = DIV_ROUND_UP(HZ, 8) * 8,					\
+	.lazy_jiffies = DIV_ROUND_UP(HZ, 8),						\
 	.name = n,									\
 	.percpu_enqueue_shift = order_base_2(CONFIG_NR_CPUS),				\
 	.percpu_enqueue_lim = 1,							\
@@ -286,7 +286,7 @@ static void cblist_init_generic(struct rcu_tasks *rtp)
 // Compute wakeup time for lazy callback timer.
 static unsigned long rcu_tasks_lazy_time(struct rcu_tasks *rtp)
 {
-	return DIV_ROUND_UP(jiffies, rtp->lazy_jiffies) * rtp->lazy_jiffies;
+	return jiffies + rtp->lazy_jiffies;
 }
 
 // Timer handler that unlazifies lazy callbacks.
@@ -300,7 +300,8 @@ static void call_rcu_tasks_generic_timer(struct timer_list *tlp)
 	rtp = rtpcp->rtpp;
 	raw_spin_lock_irqsave_rcu_node(rtpcp, flags);
 	if (!rcu_segcblist_empty(&rtpcp->cblist) && rtp->lazy_jiffies) {
-		rtpcp->urgent_gp = 1;
+		if (!rtpcp->urgent_gp)
+			rtpcp->urgent_gp = 1;
 		needwake = true;
 		mod_timer(&rtpcp->lazy_timer, rcu_tasks_lazy_time(rtp));
 	}
@@ -705,7 +706,7 @@ static void show_rcu_tasks_generic_gp_kthread(struct rcu_tasks *rtp, char *s)
 		if (havecbs && haveurgent && haveurgentcbs)
 			break;
 	}
-	pr_info("%s: %s(%d) since %lu g:%lu i:%lu/%lu %c%c%c%c %s\n",
+	pr_info("%s: %s(%d) since %lu g:%lu i:%lu/%lu %c%c%c%c l:%lu %s\n",
 		rtp->kname,
 		tasks_gp_state_getname(rtp), data_race(rtp->gp_state),
 		jiffies - data_race(rtp->gp_jiffies),
@@ -715,6 +716,7 @@ static void show_rcu_tasks_generic_gp_kthread(struct rcu_tasks *rtp, char *s)
 		".C"[havecbs],
 		".u"[haveurgent],
 		".U"[haveurgentcbs],
+		rtp->lazy_jiffies,
 		s);
 }
 #endif // #ifndef CONFIG_TINY_RCU
