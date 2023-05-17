@@ -821,6 +821,7 @@ rcu_scale_cleanup(void)
 		kthread_stime = kthread_tp->stime - kthread_stime;
 		us = div_u64_rem(kthread_stime, 1000, &ns);
 		pr_info("rcu_scale: Grace-period kthread CPU time: %llu.%03u us\n", us, ns);
+		show_rcu_gp_kthreads();
 	}
 	if (kfree_rcu_test) {
 		kfree_scale_cleanup();
