@@ -284,7 +284,9 @@ static void cblist_init_generic(struct rcu_tasks *rtp)
 // Compute wakeup time for lazy callback timer.
 static unsigned long rcu_tasks_lazy_time(struct rcu_tasks *rtp)
 {
-	return jiffies + rtp->lazy_jiffies;
+	unsigned long lj = rtp->lazy_jiffies;
+
+	return DIV_ROUND_UP(jiffies + lj / 2 + 1, lj) * lj;
 }
 
 // Timer handler that unlazifies lazy callbacks.
