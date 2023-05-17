@@ -419,6 +419,7 @@ rcu_scale_writer(void *arg)
 	struct rcu_head *rhp = NULL;
 	bool started = false, done = false, alldone = false;
 	u64 t;
+	DEFINE_TORTURE_RANDOM(tr);
 	u64 *wdp;
 	u64 *wdpp = writer_durations[me];
 
