@@ -1830,6 +1830,14 @@ void show_rcu_tasks_trace_gp_kthread(void)
 EXPORT_SYMBOL_GPL(show_rcu_tasks_trace_gp_kthread);
 #endif // !defined(CONFIG_TINY_RCU)
 
+#ifdef CONFIG_RCU_SCALE_TEST
+struct task_struct *get_rcu_tasks_trace_gp_kthread(void)
+{
+	return rcu_tasks_trace.kthread_ptr;
+}
+EXPORT_SYMBOL_GPL(get_rcu_tasks_trace_gp_kthread);
+#endif // #ifdef CONFIG_RCU_SCALE_TEST
+
 #else /* #ifdef CONFIG_TASKS_TRACE_RCU */
 static void exit_tasks_rcu_finish_trace(struct task_struct *t) { }
 #endif /* #else #ifdef CONFIG_TASKS_TRACE_RCU */
