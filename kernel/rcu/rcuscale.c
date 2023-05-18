@@ -456,7 +456,7 @@ rcu_scale_writer(void *arg)
 		if (writer_holdoff)
 			udelay(writer_holdoff);
 		if (writer_holdoff_jiffies)
-			schedule_timeout_idle(writer_holdoff_jiffies);
+			schedule_timeout_idle(torture_random(&tr) % writer_holdoff_jiffies + 1);
 		wdp = &wdpp[i];
 		*wdp = ktime_get_mono_fast_ns();
 		if (gp_async) {
