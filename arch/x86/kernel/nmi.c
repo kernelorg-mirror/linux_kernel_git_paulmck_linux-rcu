@@ -557,8 +557,11 @@ nmi_restart:
 		if (IS_ENABLED(CONFIG_NMI_CHECK_CPU)) {
 			WRITE_ONCE(nsp->idt_nmi_seq, nsp->idt_nmi_seq + 1);
 			WARN_ON_ONCE(!(nsp->idt_nmi_seq & 0x1));
-			for (; i > 0; i--)
+			for (; i > 0; i--) {
+				instrumentation_begin();
 				udelay(1000);
+				instrumentation_end();
+			}
 		}
 		default_do_nmi(regs);
 		if (IS_ENABLED(CONFIG_NMI_CHECK_CPU)) {
