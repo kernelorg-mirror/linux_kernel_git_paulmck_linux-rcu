@@ -813,7 +813,7 @@ rcu_scale_cleanup(void)
 		SCALEOUT_ERRSTRING("No expedited async GPs, so went with async!");
 
 	// If built-in, just report all of the GP kthread's CPU time.
-	if (IS_BUILTIN(CONFIG_RCU_SCALE_TEST) && !kthread_tp)
+	if (IS_BUILTIN(CONFIG_RCU_SCALE_TEST) && !kthread_tp && cur_ops->rso_gp_kthread)
 		kthread_tp = cur_ops->rso_gp_kthread();
 	if (kthread_tp) {
 		u32 ns;
