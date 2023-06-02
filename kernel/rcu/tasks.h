@@ -1927,6 +1927,12 @@ void show_rcu_tasks_gp_kthreads(void)
 }
 #endif /* #ifndef CONFIG_TINY_RCU */
 
+struct task_struct *get_rcu_tasks_gp_kthread(void)
+{
+	return rcu_tasks.kthread_ptr;
+}
+EXPORT_SYMBOL_GPL(get_rcu_tasks_gp_kthread);
+
 #ifdef CONFIG_PROVE_RCU
 struct rcu_tasks_test_desc {
 	struct rcu_head rh;
