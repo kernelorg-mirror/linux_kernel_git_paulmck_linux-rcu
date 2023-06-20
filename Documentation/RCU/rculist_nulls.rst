@@ -18,16 +18,7 @@ to solve following problem.
 
 Without 'nulls', a typical RCU linked list managing objects which are
 allocated with SLAB_TYPESAFE_BY_RCU kmem_cache can use the following
-algorithms.  The following examples assume 'obj' is a pointer to an
-object of this type:
-
-::
-
-  struct object {
-    struct hlist_node obj_node;
-    refcount_t refcnt;
-    unsigned int key;
-  };
+algorithms:
 
 1) Lookup algorithm
 -------------------
@@ -152,9 +143,6 @@ is not the slot number, then we must restart the lookup at
 the beginning. If the object was moved to the same chain,
 then the reader doesn't care: It might occasionally
 scan the list again without harm.
-
-Note that using hlist_nulls means the 'obj_node' field of
-'struct object' is of type 'struct hlist_nulls_node'.
 
 
 1) lookup algorithm
