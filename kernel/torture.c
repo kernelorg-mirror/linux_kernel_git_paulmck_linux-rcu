@@ -58,9 +58,6 @@ module_param(verbose_sleep_duration, int, 0444);
 static int random_shuffle;
 module_param(random_shuffle, int, 0444);
 
-static int lock_torture_writer_fifo;
-module_param(lock_torture_writer_fifo, int, 0444);
-
 static char *torture_type;
 static int verbose;
 
