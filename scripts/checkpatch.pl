@@ -7474,8 +7474,8 @@ sub process {
 			kernel/rcu/ |
 			include/linux/rcu
 		)};
-		if ($line =~ /\b$rcu_trace_funcs\s*\(/) {
-			if ($realfile !~ m@^$rcu_trace_paths@) {
+		if ($line =~ /\b($rcu_trace_funcs)\s*\(/) {
+			if ($realfile !~ m{^$rcu_trace_paths}) {
 				WARN("RCU_TASKS_TRACE",
 				     "use of RCU tasks trace is incorrect outside BPF or core RCU code\n" . $herecurr);
 			}
