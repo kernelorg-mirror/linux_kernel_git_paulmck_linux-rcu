@@ -112,7 +112,6 @@
 #define __REFCONST       .section       ".ref.rodata", "a"
 
 #ifndef __ASSEMBLY__
-
 /*
  * Used for initialization calls..
  */
