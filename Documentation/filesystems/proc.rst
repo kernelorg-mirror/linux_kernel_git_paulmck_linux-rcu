@@ -688,6 +688,7 @@ files are there, and which are missing.
  bus          Directory containing bus specific information
  cmdline      Kernel command line, both from bootloader and embedded
  	      in the kernel image.
+ cmdline_image Kernel command line obtained from boot loader	(6.6)
  cmdline_load Kernel command line obtained from kernel image	(6.6)
  cpuinfo      Info about the CPU
  devices      Available devices (block and character)
