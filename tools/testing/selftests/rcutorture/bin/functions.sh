@@ -339,9 +339,9 @@ specify_qemu_net () {
 # [...]
 # ---------------------------------
 extract_ftrace_from_console() {
-        awk < "$1" '
+	awk < "$1" '
 
-        /Dumping ftrace buffer:/ {
+	/Dumping ftrace buffer:/ {
 		buffer_count++
 		print "Ftrace dump " buffer_count ":"
 		capture = 1
