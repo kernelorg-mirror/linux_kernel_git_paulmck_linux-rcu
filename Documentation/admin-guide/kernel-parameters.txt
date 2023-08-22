@@ -2886,6 +2886,13 @@
 			acquisition.  Acquisitions exceeding this limit
 			will result in a splat once they do complete.
 
+	locktorture.call_rcu_chains= [KNL]
+			Specify the number of self-propagating call_rcu()
+			chains to set up.  These are used to ensure that
+			there is a high probability of an RCU grace period
+			in progress at any given time.	Defaults to 0,
+			which disables these call_rcu() chains.
+
 	locktorture.long_hold= [KNL]
 			Specify the duration in milliseconds for the
 			occasional long-duration lock hold time.  Defaults
