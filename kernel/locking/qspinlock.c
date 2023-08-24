@@ -730,6 +730,7 @@ void spinlock_dump(spinlock_t *sp, bool full)
 		__func__, _Q_TAIL_CPU_OFFSET, _Q_TAIL_IDX_MASK, _Q_TAIL_IDX_OFFSET, _Q_LOCKED_VAL, _Q_TAIL_OFFSET, sizeof(qval.tail));
 	if (!full)
 		return;
+	msp = per_cpu_ptr(&qnodes[idx].mcs, cpu);
 	while (i++ < nr_cpu_ids && (msp = next_to_prev(msp, &cpu, &idx))) {
 		pr_alert("%s: Q%d CPU %d[%d] %c%d\n", __func__, i, cpu, idx,
 			 ".L"[!!msp->locked], msp->count);
