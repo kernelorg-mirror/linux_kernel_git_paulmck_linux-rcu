@@ -891,6 +891,7 @@ static int lock_torture_writer(void *arg)
 	struct lock_stress_stats *lwsp = arg;
 	DEFINE_TORTURE_RANDOM(rand);
 	bool skip_main_lock;
+	struct task_struct *t = current;
 	int tid = lwsp - cxt.lwsa;
 
 	VERBOSE_TOROUT_STRING("lock_torture_writer task started");
@@ -923,7 +924,7 @@ static int lock_torture_writer(void *arg)
 			cxt.cur_ops->writelock(tid);
 			if (WARN_ON_ONCE(READ_ONCE(lock_is_write_held)))
 				lwsp->n_lock_fail++;
-			WRITE_ONCE(lock_is_write_held, current);
+			WRITE_ONCE(lock_is_write_held, t);
 			if (WARN_ON_ONCE(atomic_read(&lock_is_read_held)))
 				lwsp->n_lock_fail++; /* rare, but... */
 			if (acq_writer_lim > 0) {
