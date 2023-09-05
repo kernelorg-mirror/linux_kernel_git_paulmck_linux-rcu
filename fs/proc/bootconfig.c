@@ -16,6 +16,11 @@ static int boot_config_proc_show(struct seq_file *m, void *v)
 {
 	if (saved_boot_config)
 		seq_puts(m, saved_boot_config);
+	if (boot_command_line[0]) {
+		seq_puts(m, "# Parameters from bootloader:\n# ");
+		seq_puts(m, boot_command_line);
+		seq_putc(m, '\n');
+	}
 	return 0;
 }
 
