@@ -16,11 +16,6 @@ static int boot_config_proc_show(struct seq_file *m, void *v)
 {
 	if (saved_boot_config)
 		seq_puts(m, saved_boot_config);
-	if (boot_command_line[0]) {
-		seq_puts(m, "# Parameters from bootloader:\n# ");
-		seq_puts(m, boot_command_line);
-		seq_putc(m, '\n');
-	}
 	return 0;
 }
 
@@ -66,6 +61,12 @@ static int __init copy_xbc_key_value_list(char *dst, size_t size)
 			if (ret < 0)
 				break;
 			dst += ret;
+		}
+		if (ret >= 0 && boot_command_line[0]) {
+			ret = snprintf(dst, rest(dst, end), "# Parameters from bootloader:\n %s\n",
+				       boot_command_line);
+			if (ret > 0)
+				dst += ret;
 		}
 	}
 out:
