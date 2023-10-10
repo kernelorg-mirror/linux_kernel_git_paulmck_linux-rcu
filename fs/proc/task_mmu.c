@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: GPL-2.0
+#include <linux/delay.h>
 #include <linux/pagewalk.h>
 #include <linux/mm_inline.h>
 #include <linux/hugetlb.h>
@@ -334,6 +335,7 @@ done:
 
 static int show_map(struct seq_file *m, void *v)
 {
+	udelay(10000);
 	show_map_vma(m, v);
 	return 0;
 }
