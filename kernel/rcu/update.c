@@ -538,11 +538,12 @@ long torture_sched_setaffinity(pid_t pid, const struct cpumask *in_mask)
 EXPORT_SYMBOL_GPL(torture_sched_setaffinity);
 #endif
 
+int rcu_cpu_stall_notifiers __read_mostly; // !0 = provide stall notifiers (rarely useful)
+EXPORT_SYMBOL_GPL(rcu_cpu_stall_notifiers);
+
 #ifdef CONFIG_RCU_STALL_COMMON
 int rcu_cpu_stall_ftrace_dump __read_mostly;
 module_param(rcu_cpu_stall_ftrace_dump, int, 0644);
-int rcu_cpu_stall_notifiers __read_mostly; // !0 = provide stall notifiers (rarely useful)
-EXPORT_SYMBOL_GPL(rcu_cpu_stall_notifiers);
 #ifdef CONFIG_RCU_CPU_STALL_NOTIFIER
 module_param(rcu_cpu_stall_notifiers, int, 0444);
 #endif // #ifdef CONFIG_RCU_CPU_STALL_NOTIFIER
