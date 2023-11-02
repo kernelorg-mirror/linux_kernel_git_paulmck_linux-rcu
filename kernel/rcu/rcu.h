@@ -265,6 +265,7 @@ static inline bool rcu_stall_is_suppressed_at_boot(void)
 #ifdef CONFIG_RCU_STALL_COMMON
 
 extern int rcu_cpu_stall_ftrace_dump;
+extern int rcu_cpu_stall_notifiers;
 extern int rcu_cpu_stall_suppress;
 extern int rcu_cpu_stall_timeout;
 extern int rcu_exp_cpu_stall_timeout;
@@ -657,10 +658,10 @@ static inline bool rcu_cpu_beenfullyonline(int cpu) { return true; }
 bool rcu_cpu_beenfullyonline(int cpu);
 #endif
 
-#ifdef CONFIG_RCU_STALL_COMMON
+#if defined(CONFIG_RCU_STALL_COMMON) && defined(CONFIG_RCU_CPU_STALL_NOTIFIER)
 int rcu_stall_notifier_call_chain(unsigned long val, void *v);
-#else // #ifdef CONFIG_RCU_STALL_COMMON
+#else // #if defined(CONFIG_RCU_STALL_COMMON) && defined(CONFIG_RCU_CPU_STALL_NOTIFIER)
 static inline int rcu_stall_notifier_call_chain(unsigned long val, void *v) { return NOTIFY_DONE; }
-#endif // #else // #ifdef CONFIG_RCU_STALL_COMMON
+#endif // #else // #if defined(CONFIG_RCU_STALL_COMMON) && defined(CONFIG_RCU_CPU_STALL_NOTIFIER)
 
 #endif /* __LINUX_RCU_H */
