@@ -971,15 +971,14 @@ static void rcu_tasks_postscan(struct list_head *hop)
 	 */
 
 	for_each_possible_cpu(cpu) {
-		unsigned long flags;
 		struct rcu_tasks_percpu *rtpcp = per_cpu_ptr(rcu_tasks.rtpcpu, cpu);
 		struct task_struct *t;
 
-		raw_spin_lock_irqsave_rcu_node(rtpcp, flags);
+		raw_spin_lock_irq_rcu_node(rtpcp);
 		list_for_each_entry(t, &rtpcp->rtp_exit_list, rcu_tasks_exit_list)
 			if (list_empty(&t->rcu_tasks_holdout_list))
 				rcu_tasks_pertask(t, hop);
-		raw_spin_unlock_irqrestore_rcu_node(rtpcp, flags);
+		raw_spin_unlock_irq_rcu_node(rtpcp);
 	}
 
 	if (!IS_ENABLED(CONFIG_TINY_RCU))
